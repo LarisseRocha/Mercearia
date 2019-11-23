@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifnmg.Mercearia;
+package br.edu.ifnmg.Mercearia.DomainModel;
 
 import java.util.Objects;
 
@@ -12,6 +12,7 @@ import java.util.Objects;
  * @author Larisse
  */
 public class Fornecedor {
+    private int id;
     private int cnpj;
     private String razaoSocial;
     private String email;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifnmg.Mercearia;
+package br.edu.ifnmg.Mercearia.DomainModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +14,7 @@ import java.util.Objects;
  * @author Larisse
  */
 public class Cliente {
+    private int id;
     private String nome;
     private String cpf;
     private String email;
