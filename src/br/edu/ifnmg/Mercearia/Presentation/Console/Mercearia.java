@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifnmg.Presentation.Console;
+package br.edu.ifnmg.Mercearia.Presentation.Console;
 
 import br.edu.ifnmg.Mercearia.DomainModel.Cliente;
 import br.edu.ifnmg.Mercearia.DomainModel.Cliente;
