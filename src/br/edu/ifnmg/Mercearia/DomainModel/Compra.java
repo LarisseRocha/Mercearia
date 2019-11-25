@@ -17,14 +17,14 @@ public class Compra {
      private int id; 
      private float valorTotal;
      Date dtVenda;
-     private Usuario usuario;
+     private String operador;
      private Fornecedor fornecedor ;
 
-    public Compra(int id, float valorTotal, Date dtVenda, Usuario usuario, Fornecedor fornecedor) {
+    public Compra(int id, float valorTotal, Date dtVenda,  Fornecedor fornecedor) {
         this.id = 0;
         this.valorTotal = 0;
         this.dtVenda = dtVenda;
-        this.usuario = usuario;
+        this.operador = "";
         this.fornecedor = fornecedor;
     }
 
@@ -51,15 +51,6 @@ public class Compra {
     public void setDtVenda(Date dtVenda) {
         this.dtVenda = dtVenda;
     }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     public Fornecedor getFornecedor() {
         return fornecedor;
     }
@@ -68,13 +59,21 @@ public class Compra {
         this.fornecedor = fornecedor;
     }
 
+    public String getOperador() {
+        return operador;
+    }
+
+    public void setOperador(String operador) {
+        this.operador = operador;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 53 * hash + this.id;
         hash = 53 * hash + Float.floatToIntBits(this.valorTotal);
         hash = 53 * hash + Objects.hashCode(this.dtVenda);
-        hash = 53 * hash + Objects.hashCode(this.usuario);
+        hash = 53 * hash + Objects.hashCode(this.operador);
         hash = 53 * hash + Objects.hashCode(this.fornecedor);
         return hash;
     }
@@ -97,10 +96,10 @@ public class Compra {
         if (Float.floatToIntBits(this.valorTotal) != Float.floatToIntBits(other.valorTotal)) {
             return false;
         }
-        if (!Objects.equals(this.dtVenda, other.dtVenda)) {
+        if (!Objects.equals(this.operador, other.operador)) {
             return false;
         }
-        if (!Objects.equals(this.usuario, other.usuario)) {
+        if (!Objects.equals(this.dtVenda, other.dtVenda)) {
             return false;
         }
         if (!Objects.equals(this.fornecedor, other.fornecedor)) {
@@ -111,7 +110,12 @@ public class Compra {
 
     @Override
     public String toString() {
-        return "Compra{" + "id=" + id + ", valorTotal=" + valorTotal + ", dtVenda=" + dtVenda + ", usuario=" + usuario + ", fornecedor=" + fornecedor + '}';
+        return "Compra{" + "id=" + id + ", valorTotal=" + valorTotal + ", dtVenda=" + dtVenda + ", operador=" + operador + ", fornecedor=" + fornecedor + '}';
     }
+    
+
+   
+
+   
 
 }

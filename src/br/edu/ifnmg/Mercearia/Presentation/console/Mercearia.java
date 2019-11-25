@@ -5,6 +5,10 @@
  */
 package br.edu.ifnmg.Mercearia.Presentation.console;
 
+import br.edu.ifnmg.Mercearia.DomainModel.Cliente;
+import br.edu.ifnmg.Mercearia.DomainModel.Cliente;
+import br.edu.ifnmg.Mercearia.Persistence.ClienteRepositorio;
+
 /**
  *
  * @author Larisse
@@ -16,6 +20,13 @@ public class Mercearia {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+          Cliente a2 = new Cliente();
+            a2.setNome("Larisse");
+            a2.setCpf("123.111.111-20");
+      
+      
+            ClienteRepositorio repo = new ClienteRepositorio();
+            repo.Salvar(a2);
     }
     
 }

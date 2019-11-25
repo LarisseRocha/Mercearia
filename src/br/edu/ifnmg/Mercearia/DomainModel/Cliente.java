@@ -37,6 +37,11 @@ public class Cliente {
         this.estado = "";
     }
 
+    public Cliente() {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
     public String getNome() {
         return nome;
     }
@@ -170,5 +175,17 @@ public class Cliente {
     public String toString() {
         return "Cliente{" + "nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", telefones=" + telefones + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + '}';
     }
+
+    public int getId() {
+        return 0;
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setId(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+    
     
 }

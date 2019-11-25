@@ -33,6 +33,10 @@ public class Fornecedor {
         this.estado = "";
     }
 
+    public Fornecedor() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getCnpj() {
         return cnpj;
     }
@@ -153,6 +157,14 @@ public class Fornecedor {
     @Override
     public String toString() {
         return "Fornecedor{" + "cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", email=" + email + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + '}';
+    }
+
+    public int getId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setId(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

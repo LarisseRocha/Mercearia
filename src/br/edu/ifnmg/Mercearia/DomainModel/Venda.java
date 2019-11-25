@@ -16,14 +16,14 @@ public class Venda {
     private int id; 
     private float valorTotal;
     Date dtVenda;
-    private Usuario usuario;
+    private String operador;
     private Cliente cliente;
 
-    public Venda(int id, float valorTotal, Date dtVenda, Usuario usuario) {
+    public Venda(int id, float valorTotal, Date dtVenda, String operador) {
         this.id = 0;
         this.valorTotal = 0;
         this.dtVenda = dtVenda;
-        this.usuario = usuario;
+        this.operador = "";
     }
 
     public int getId() {
@@ -50,21 +50,31 @@ public class Venda {
         this.dtVenda = dtVenda;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getOperador() {
+        return operador;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setOperador(String operador) {
+        this.operador = operador;
+    }
+
+   
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + this.id;
-        hash = 97 * hash + Float.floatToIntBits(this.valorTotal);
-        hash = 97 * hash + Objects.hashCode(this.dtVenda);
-        hash = 97 * hash + Objects.hashCode(this.usuario);
+        hash = 31 * hash + this.id;
+        hash = 31 * hash + Float.floatToIntBits(this.valorTotal);
+        hash = 31 * hash + Objects.hashCode(this.dtVenda);
+        hash = 31 * hash + Objects.hashCode(this.operador);
+        hash = 31 * hash + Objects.hashCode(this.cliente);
         return hash;
     }
 
@@ -86,10 +96,13 @@ public class Venda {
         if (Float.floatToIntBits(this.valorTotal) != Float.floatToIntBits(other.valorTotal)) {
             return false;
         }
+        if (!Objects.equals(this.operador, other.operador)) {
+            return false;
+        }
         if (!Objects.equals(this.dtVenda, other.dtVenda)) {
             return false;
         }
-        if (!Objects.equals(this.usuario, other.usuario)) {
+        if (!Objects.equals(this.cliente, other.cliente)) {
             return false;
         }
         return true;
@@ -97,8 +110,11 @@ public class Venda {
 
     @Override
     public String toString() {
-        return "Venda{" + "id=" + id + ", valorTotal=" + valorTotal + ", dtVenda=" + dtVenda + ", usuario=" + usuario + '}';
+        return "Venda{" + "id=" + id + ", valorTotal=" + valorTotal + ", dtVenda=" + dtVenda + ", operador=" + operador + ", cliente=" + cliente + '}';
     }
+
+
+   
     
 
     
