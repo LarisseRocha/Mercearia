@@ -27,8 +27,7 @@ public class Mercearia {
           Cliente a2 = new Cliente();
             a2.setNome("Larisse");
             a2.setCpf("123.111.111-20");
-      
-      
+            a2.setSituacao(true);
             ClienteRepositorio repo = new ClienteRepositorio();
             repo.Salvar(a2);
     }

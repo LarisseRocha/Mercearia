@@ -25,10 +25,11 @@ public class ClienteRepositorio extends BancoDados {
            
           if(obj.getId() == 0){
             PreparedStatement sql =  this.getConexao()
-                .prepareStatement("insert into Clientes(nome, cpf) values(?,?)");
+                .prepareStatement("insert into Clientes(nome, cpf, situacao) values(?,?,?)");
             
             sql.setString(1, obj.getNome());
             sql.setString(2, obj.getCpf().replace(".", "").replace("-", ""));
+            sql.setBoolean(3, obj.isSituacao());
             
             if(sql.executeUpdate() > 0){
                 return true;
@@ -37,11 +38,12 @@ public class ClienteRepositorio extends BancoDados {
                 return false;
           }else{
                PreparedStatement sql = this.getConexao()
-                       .prepareStatement("update Clientes set nome = ?, cpf =? where id = ?");
-               
-               sql.setString(1, obj.getNome());
-               sql.setString(2, obj.getCpf().replace(".", "").replace("-", ""));
-               sql.setInt(3, obj.getId());
+                       .prepareStatement("update Clientes set nome = ?, cpf =? situacao= =? where id = ?");
+               sql.setInt(1, obj.getId());
+               sql.setString(2, obj.getNome());
+               sql.setString(3, obj.getCpf().replace(".", "").replace("-", ""));
+               sql.setBoolean(4, obj.isSituacao());
+              
                
                if(sql.executeUpdate()>0)
                    return true;
@@ -60,19 +62,21 @@ public class ClienteRepositorio extends BancoDados {
             sql.setInt(1, id);
             ResultSet resultado = sql.executeQuery();
             resultado.next();
-            Cliente produto = new Cliente();
+            Cliente cliente = new Cliente();
          
-            produto.setId(resultado.getInt("id"));
-            produto.setNome(resultado.getString("nome"));
-            produto.setCpf(resultado.getString("cpf"));
+            cliente.setId(resultado.getInt("id"));
+            cliente.setNome(resultado.getString("nome"));
+            cliente.setCpf(resultado.getString("cpf"));
+            cliente.setSituacao(resultado.getBoolean("situacao"));
            
              
-            return produto;
+            return cliente;
             
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
         return null;
     }
+    
     
 }

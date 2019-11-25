@@ -21,6 +21,7 @@ public class Fornecedor {
     private String bairro;
     private String cidade;
     private String estado;
+    private boolean situacao;
 
     public Fornecedor(int cnpj, String razaoSocial, String email, String rua, int numero, String bairro, String cidade, String estado) {
         this.cnpj = 0;
@@ -31,10 +32,11 @@ public class Fornecedor {
         this.bairro = "";
         this.cidade = "";
         this.estado = "";
+        this.situacao = situacao;
     }
 
     public Fornecedor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getCnpj() {
@@ -101,6 +103,14 @@ public class Fornecedor {
         this.estado = estado;
     }
 
+    public boolean isSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(boolean situacao) {
+        this.situacao = situacao;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -112,6 +122,7 @@ public class Fornecedor {
         hash = 31 * hash + Objects.hashCode(this.bairro);
         hash = 31 * hash + Objects.hashCode(this.cidade);
         hash = 31 * hash + Objects.hashCode(this.estado);
+        hash = 97 * hash + (this.situacao ? 1 : 0);
         return hash;
     }
 
@@ -156,7 +167,7 @@ public class Fornecedor {
 
     @Override
     public String toString() {
-        return "Fornecedor{" + "cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", email=" + email + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + '}';
+        return "Fornecedor{" + "id=" + id + ", cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", email=" + email + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", situacao=" + situacao + '}';
     }
 
     public int getId() {

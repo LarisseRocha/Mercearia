@@ -24,7 +24,7 @@ public class BancoDados {
         }catch(SQLException ex){
            System.out.println("Os dados de conexão com o banco de dados estão errados"); 
            System.out.println(ex.getMessage());
-        }      
+        }              
         
         
         

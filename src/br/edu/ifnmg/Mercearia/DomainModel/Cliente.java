@@ -24,6 +24,7 @@ public class Cliente {
     private String bairro;
     private String cidade;
     private String estado;
+    public boolean situacao;
 
     public Cliente(String nome, String cpf, String email, List<String> telefones, String rua, int numero, String bairro, String cidade, String estado) {
         this.nome = "";
@@ -35,6 +36,7 @@ public class Cliente {
         this.bairro = "";
         this.cidade = "";
         this.estado = "";
+        this.situacao = situacao;
     }
 
     public Cliente() {
@@ -114,9 +116,18 @@ public class Cliente {
         this.estado = estado;
     }
 
+    public boolean isSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(boolean situacao) {
+        this.situacao = situacao;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
+        hash = 97 * hash + this.id;
         hash = 97 * hash + Objects.hashCode(this.nome);
         hash = 97 * hash + Objects.hashCode(this.cpf);
         hash = 97 * hash + Objects.hashCode(this.email);
@@ -126,6 +137,7 @@ public class Cliente {
         hash = 97 * hash + Objects.hashCode(this.bairro);
         hash = 97 * hash + Objects.hashCode(this.cidade);
         hash = 97 * hash + Objects.hashCode(this.estado);
+        hash = 97 * hash + (this.situacao ? 1 : 0);
         return hash;
     }
 
@@ -141,7 +153,13 @@ public class Cliente {
             return false;
         }
         final Cliente other = (Cliente) obj;
+        if (this.id != other.id) {
+            return false;
+        }
         if (this.numero != other.numero) {
+            return false;
+        }
+        if (this.situacao != other.situacao) {
             return false;
         }
         if (!Objects.equals(this.nome, other.nome)) {
@@ -173,9 +191,13 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", telefones=" + telefones + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + '}';
+        return "Cliente{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", telefones=" + telefones + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", situacao=" + situacao + '}';
     }
+    
 
+  
+
+   
     public int getId() {
         return 0;
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
