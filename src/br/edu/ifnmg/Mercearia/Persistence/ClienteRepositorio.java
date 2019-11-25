@@ -14,7 +14,7 @@ import java.sql.SQLException;
  *
  * @author Larisse
  */
-public class ClienteRepositorio extends DataBase {
+public class ClienteRepositorio extends BancoDados {
     
     public ClienteRepositorio(){
        super(); 

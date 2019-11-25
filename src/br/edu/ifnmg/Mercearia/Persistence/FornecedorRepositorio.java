@@ -14,7 +14,7 @@ import java.sql.SQLException;
  *
  * @author Larisse
  */
-public class FornecedorRepositorio extends DataBase {
+public class FornecedorRepositorio extends BancoDados {
     public boolean Salvar(Fornecedor obj){
        try{
            

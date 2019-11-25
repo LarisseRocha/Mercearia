@@ -14,7 +14,7 @@ import java.sql.SQLException;
  *
  * @author Larisse
  */
-public class ProdutoRepositorio extends DataBase {
+public class ProdutoRepositorio extends BancoDados {
     public ProdutoRepositorio(){
         super();
     }
