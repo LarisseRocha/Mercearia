@@ -25,11 +25,18 @@ public class ClienteRepositorio extends BancoDados {
            
           if(obj.getId() == 0){
             PreparedStatement sql =  this.getConexao()
-                .prepareStatement("insert into Clientes(nome, cpf, situacao) values(?,?,?)");
+                .prepareStatement("insert into Clientes(nome, cpf, email, rua, numero, bairro, cidade, estado, situacao) values(?,?,?,?,?,?,?,?,?)");
             
             sql.setString(1, obj.getNome());
-            sql.setString(2, obj.getCpf().replace(".", "").replace("-", ""));
-            sql.setBoolean(3, obj.isSituacao());
+            sql.setString(2, obj.getCpf().replace(".", " ").replace("-", " "));
+            sql.setString(3, obj.getEmail());
+            sql.setString(4, obj.getRua());
+            sql.setInt(5, obj.getNumero());
+            sql.setString(6, obj.getBairro());
+            sql.setString(7, obj.getCidade());
+            sql.setString(8, obj.getEstado());
+            sql.setBoolean(9, obj.isSituacao());
+            
             
             if(sql.executeUpdate() > 0){
                 return true;
@@ -38,11 +45,17 @@ public class ClienteRepositorio extends BancoDados {
                 return false;
           }else{
                PreparedStatement sql = this.getConexao()
-                       .prepareStatement("update Clientes set nome = ?, cpf =? situacao= =? where id = ?");
-               sql.setInt(1, obj.getId());
-               sql.setString(2, obj.getNome());
-               sql.setString(3, obj.getCpf().replace(".", "").replace("-", ""));
-               sql.setBoolean(4, obj.isSituacao());
+                       .prepareStatement("update Clientes set nome = ?, cpf =?, email=?, numero = ?,rua =?, bairro = ?, cidade = ?, estado =?, situacao= =? where id = ?");
+                sql.setString(1, obj.getNome());
+                sql.setString(2, obj.getCpf().replace(".", " ").replace("-", " "));
+                sql.setString(3, obj.getEmail());
+                sql.setString(4, obj.getRua());
+                sql.setInt(5, obj.getNumero());
+                sql.setString(6, obj.getBairro());
+                sql.setString(7, obj.getCidade());
+                sql.setString(8, obj.getEstado());
+                sql.setBoolean(9, obj.isSituacao());
+            
               
                
                if(sql.executeUpdate()>0)
@@ -67,6 +80,12 @@ public class ClienteRepositorio extends BancoDados {
             cliente.setId(resultado.getInt("id"));
             cliente.setNome(resultado.getString("nome"));
             cliente.setCpf(resultado.getString("cpf"));
+            cliente.setEmail(resultado.getString("email"));
+            cliente.setRua(resultado.getString("rua"));
+            cliente.setNumero(resultado.getInt("numero"));
+            cliente.setBairro(resultado.getString("bairro"));
+            cliente.setCidade(resultado.getString("cidade"));
+            cliente.setEstado(resultado.getString("estado"));
             cliente.setSituacao(resultado.getBoolean("situacao"));
            
              

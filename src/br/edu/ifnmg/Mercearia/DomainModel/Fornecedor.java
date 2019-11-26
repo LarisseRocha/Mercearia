@@ -5,6 +5,7 @@
  */
 package br.edu.ifnmg.Mercearia.DomainModel;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -16,6 +17,7 @@ public class Fornecedor {
     private int cnpj;
     private String razaoSocial;
     private String email;
+    private List<String> telefones;
     private String rua;
     private int numero;
     private String bairro;
@@ -171,11 +173,12 @@ public class Fornecedor {
     }
 
     public int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0;
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void setId(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
