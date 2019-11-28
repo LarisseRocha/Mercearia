@@ -20,6 +20,7 @@ public class ProdutoRepositorio extends BancoDados {
     }
     
     public boolean Salvar(Produto obj){
+        
         try{
             if(obj.getId() == 0){
                 PreparedStatement sql = this.getConexao()
@@ -73,4 +74,5 @@ public class ProdutoRepositorio extends BancoDados {
         }
         return null;
     }
+    
 }

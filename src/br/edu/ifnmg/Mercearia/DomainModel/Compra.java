@@ -112,6 +112,10 @@ public class Compra {
     public String toString() {
         return "Compra{" + "id=" + id + ", valorTotal=" + valorTotal + ", dtVenda=" + dtVenda + ", operador=" + operador + ", fornecedor=" + fornecedor + '}';
     }
+
+    public Object getProduto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 
    

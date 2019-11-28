@@ -15,6 +15,10 @@ import java.sql.SQLException;
  * @author Larisse
  */
 public class FornecedorRepositorio extends BancoDados {
+    
+    public FornecedorRepositorio(){
+        super();
+    }
     public boolean Salvar(Fornecedor obj){
        try{
            
@@ -22,8 +26,8 @@ public class FornecedorRepositorio extends BancoDados {
             PreparedStatement sql =  this.getConexao()
                 .prepareStatement("insert into Fornecedores(cnpj, razaoSocial, email, rua, numero, bairro, cidade, estado, situacao) values(?,?,?,?,?,?,?,?,?)");
             
-            sql.setInt(1, obj.getCnpj());
-            sql.setString(2, obj.getRazaoSocial().replace(".", "").replace("-", ""));
+            sql.setString(1, obj.getCnpj().replace(".", " ").replace("/", " ").replace("-", " "));
+            sql.setString(2, obj.getRazaoSocial());
             sql.setString(3, obj.getEmail());
             sql.setString(4, obj.getRua());
             sql.setInt(5, obj.getNumero());
@@ -32,6 +36,7 @@ public class FornecedorRepositorio extends BancoDados {
             sql.setString(8, obj.getEstado());
             sql.setBoolean(9, obj.isSituacao());
             
+            
             if(sql.executeUpdate() > 0){
                 return true;
           }
@@ -39,10 +44,10 @@ public class FornecedorRepositorio extends BancoDados {
                 return false;
           }else{
                PreparedStatement sql = this.getConexao()
-                       .prepareStatement("update Fornecedors set cnpj = ?, razaoSocial =?, email=?, rua=?, numero =?, bairro=?, cidade=?, estado=?, situacao = ? where id = ?");
+                       .prepareStatement("update Fornecedores set cnpj = ?, razaoSocial = ?, email = ?, rua=?, numero =?, bairro=?, cidade=?, estado=?, situacao = ? where id = ?");
                sql.setInt(1, obj.getId());
-               sql.setInt(2, obj.getCnpj());
-               sql.setString(3, obj.getRazaoSocial().replace(".", "").replace("-", ""));
+               sql.setString(1, obj.getCnpj().replace(".", " ").replace("/", " ").replace("-", " "));
+               sql.setString(3, obj.getRazaoSocial());
                sql.setString(4, obj.getEmail());
                sql.setString(5, obj.getRua());
                sql.setInt(6, obj.getNumero());
@@ -73,7 +78,7 @@ public class FornecedorRepositorio extends BancoDados {
             Fornecedor fornecedor = new Fornecedor();
          
            fornecedor.setId(resultado.getInt("id"));
-           fornecedor.setCnpj(resultado.getInt("cnpj"));
+           fornecedor.setCnpj(resultado.getString("cnpj"));
            fornecedor.setRazaoSocial(resultado.getString("razaoSocial"));
            fornecedor.setEmail(resultado.getString("email"));
            fornecedor.setRua(resultado.getString("rua"));

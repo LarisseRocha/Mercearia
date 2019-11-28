@@ -6,6 +6,7 @@
 package br.edu.ifnmg.Mercearia.Persistence;
 
 import br.edu.ifnmg.Mercearia.DomainModel.Cliente;
+import br.edu.ifnmg.Mercearia.DomainModel.ErroValidacaoException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,17 +26,18 @@ public class ClienteRepositorio extends BancoDados {
            
           if(obj.getId() == 0){
             PreparedStatement sql =  this.getConexao()
-                .prepareStatement("insert into Clientes(nome, cpf, email, rua, numero, bairro, cidade, estado, situacao) values(?,?,?,?,?,?,?,?,?)");
+                .prepareStatement("insert into Clientes(nome, cpf, email, rua, numero, bairro, cidade, estado, situacao) values(?,?,?,?,?,?,?,?,?,?)");
             
             sql.setString(1, obj.getNome());
             sql.setString(2, obj.getCpf().replace(".", " ").replace("-", " "));
             sql.setString(3, obj.getEmail());
             sql.setString(4, obj.getRua());
-            sql.setInt(5, obj.getNumero());
+            sql.setString(5, obj.getNumero());
             sql.setString(6, obj.getBairro());
             sql.setString(7, obj.getCidade());
             sql.setString(8, obj.getEstado());
             sql.setBoolean(9, obj.isSituacao());
+            
             
             
             if(sql.executeUpdate() > 0){
@@ -50,7 +52,7 @@ public class ClienteRepositorio extends BancoDados {
                 sql.setString(2, obj.getCpf().replace(".", " ").replace("-", " "));
                 sql.setString(3, obj.getEmail());
                 sql.setString(4, obj.getRua());
-                sql.setInt(5, obj.getNumero());
+                sql.setString(5, obj.getNumero());
                 sql.setString(6, obj.getBairro());
                 sql.setString(7, obj.getCidade());
                 sql.setString(8, obj.getEstado());
@@ -68,7 +70,7 @@ public class ClienteRepositorio extends BancoDados {
        }
         return false;
     }
-    public Cliente Abrir(int id){
+    public Cliente Abrir(int id) throws ErroValidacaoException{
         try{
             PreparedStatement sql = this.getConexao()
                     .prepareStatement("select * from Clientes where id = ?");
@@ -82,7 +84,7 @@ public class ClienteRepositorio extends BancoDados {
             cliente.setCpf(resultado.getString("cpf"));
             cliente.setEmail(resultado.getString("email"));
             cliente.setRua(resultado.getString("rua"));
-            cliente.setNumero(resultado.getInt("numero"));
+            cliente.setNumero(resultado.getString("numero"));
             cliente.setBairro(resultado.getString("bairro"));
             cliente.setCidade(resultado.getString("cidade"));
             cliente.setEstado(resultado.getString("estado"));

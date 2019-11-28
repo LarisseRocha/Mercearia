@@ -6,6 +6,7 @@
 package br.edu.ifnmg.Mercearia.Presentation.Console;
 
 import br.edu.ifnmg.Mercearia.DomainModel.Cliente;
+import br.edu.ifnmg.Mercearia.DomainModel.ErroValidacaoException;
 import br.edu.ifnmg.Mercearia.DomainModel.Fornecedor;
 import br.edu.ifnmg.Mercearia.DomainModel.Produto;
 import br.edu.ifnmg.Mercearia.DomainModel.Usuario;
@@ -23,12 +24,12 @@ public class Mercearia {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ErroValidacaoException {
         // TODO code application logic here
             Cliente a2 = new Cliente();
             a2.setNome("Larisse");
             a2.setCpf("111.111.111-20");
-            a2.setNumero(1);
+            a2.setNumero("1");
             a2.setRua("av. A");
             a2.setEmail("aaa@mail.com");
             a2.setBairro("Centro");
@@ -41,7 +42,7 @@ public class Mercearia {
             
             
             Fornecedor f = new Fornecedor();
-            f.setCnpj(0000000002);
+            f.setCnpj("00.000.000.0000/02");
             f.setRazaoSocial("Variados");
             f.setEmail("variado@mail.com");
             f.setRua("Rua B");
