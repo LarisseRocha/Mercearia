@@ -31,7 +31,7 @@ public class Cliente {
     Pattern  regex_cpf = Pattern.compile("\\d{3}\\.?\\d{3}\\.?\\d{3}\\-?\\d{2}");
     public Cliente(String nome, String cpf, String email, List<String> telefones, String rua, String numero, String bairro, String cidade, String estado) {
         this.nome = "";
-        this.cpf = "";
+        this.cpf = "00000000000";
         this.email = "";
         this.telefones = new ArrayList<>();
         this.rua = "";
@@ -43,6 +43,7 @@ public class Cliente {
     }
 
     public Cliente() {
+        
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

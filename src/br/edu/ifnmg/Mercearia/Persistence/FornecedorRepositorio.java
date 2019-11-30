@@ -30,7 +30,7 @@ public class FornecedorRepositorio extends BancoDados {
             sql.setString(2, obj.getRazaoSocial());
             sql.setString(3, obj.getEmail());
             sql.setString(4, obj.getRua());
-            sql.setInt(5, obj.getNumero());
+            sql.setString(5, obj.getNumero());
             sql.setString(6, obj.getBairro());
             sql.setString(7, obj.getCidade());
             sql.setString(8, obj.getEstado());
@@ -45,16 +45,16 @@ public class FornecedorRepositorio extends BancoDados {
           }else{
                PreparedStatement sql = this.getConexao()
                        .prepareStatement("update Fornecedores set cnpj = ?, razaoSocial = ?, email = ?, rua=?, numero =?, bairro=?, cidade=?, estado=?, situacao = ? where id = ?");
-               sql.setInt(1, obj.getId());
+               
                sql.setString(1, obj.getCnpj().replace(".", " ").replace("/", " ").replace("-", " "));
-               sql.setString(3, obj.getRazaoSocial());
-               sql.setString(4, obj.getEmail());
-               sql.setString(5, obj.getRua());
-               sql.setInt(6, obj.getNumero());
-               sql.setString(7, obj.getBairro());
-               sql.setString(8, obj.getCidade());
-               sql.setString(9, obj.getEstado());
-               sql.setBoolean(10, obj.isSituacao());
+               sql.setString(2, obj.getRazaoSocial());
+               sql.setString(3, obj.getEmail());
+               sql.setString(4, obj.getRua());
+               sql.setString(5, obj.getNumero());
+               sql.setString(6, obj.getBairro());
+               sql.setString(7, obj.getCidade());
+               sql.setString(8, obj.getEstado());
+               sql.setBoolean(9, obj.isSituacao());
                
                if(sql.executeUpdate()>0)
                    return true;
@@ -77,17 +77,26 @@ public class FornecedorRepositorio extends BancoDados {
             resultado.next();
             Fornecedor fornecedor = new Fornecedor();
          
-           fornecedor.setId(resultado.getInt("id"));
-           fornecedor.setCnpj(resultado.getString("cnpj"));
-           fornecedor.setRazaoSocial(resultado.getString("razaoSocial"));
-           fornecedor.setEmail(resultado.getString("email"));
-           fornecedor.setRua(resultado.getString("rua"));
-           fornecedor.setNumero(resultado.getInt("numero"));
-           fornecedor.setBairro(resultado.getString("bairro"));
-           fornecedor.setCidade(resultado.getString("cidade"));
-           fornecedor.setEstado(resultado.getString("estado"));
-           fornecedor.setSituacao(resultado.getBoolean("situacao"));
-           
+            
+            
+              try {
+                  
+                        fornecedor.setId(resultado.getInt("id"));
+                        fornecedor.setCnpj(resultado.getString("cnpj"));
+                        fornecedor.setRazaoSocial(resultado.getString("razaoSocial"));
+                        fornecedor.setEmail(resultado.getString("email"));
+                        fornecedor.setRua(resultado.getString("rua"));
+                        fornecedor.setNumero(resultado.getString("numero"));
+                        fornecedor.setBairro(resultado.getString("bairro"));
+                        fornecedor.setCidade(resultado.getString("cidade"));
+                        fornecedor.setEstado(resultado.getString("estado"));
+                        fornecedor.setSituacao(resultado.getBoolean("situacao"));
+               
+             } catch(Exception ex){
+                 fornecedor = null;
+             }
+             
+
              
             return fornecedor;
             

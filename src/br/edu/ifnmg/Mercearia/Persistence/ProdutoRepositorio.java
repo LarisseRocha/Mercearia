@@ -24,10 +24,14 @@ public class ProdutoRepositorio extends BancoDados {
         try{
             if(obj.getId() == 0){
                 PreparedStatement sql = this.getConexao()
-                        .prepareStatement("insert into Produtos(descricao, prCompra, prVenda) values(?,?,?)");
+                        .prepareStatement("insert into Produtos(descricao, uniCompra, uniVenda, prCompra, prVenda) values(?,?,?,?,?)");
                 sql.setString(1, obj.getDescricao());
-                sql.setFloat(2, obj.getPrCompra());
-                sql.setFloat(3, obj.getPrVenda());
+                sql.setInt(2, (int) obj.getUniCompra());
+                sql.setInt(3, (int) obj.getUniVenda());
+                sql.setFloat(4, obj.getPrCompra());
+                sql.setFloat(5, obj.getPrVenda());
+                
+                
 
                 if(sql.executeUpdate()>0){
                     return true;
@@ -35,8 +39,10 @@ public class ProdutoRepositorio extends BancoDados {
                     return false;
             }else{
                     PreparedStatement sql = this.getConexao()
-                        .prepareStatement("update set Produtos descricao =?, prCompra=?, prVenda=?");
+                        .prepareStatement("update set Produtos descricao =?, uniCompr=?, uniVenda=?, prCompra=?, prVenda=?");
                 sql.setString(1, obj.getDescricao());
+                sql.setInt(2, (int) obj.getUniCompra());
+                sql.setInt(4, (int) obj.getUniVenda());
                 sql.setFloat(2, obj.getPrCompra());
                 sql.setFloat(3, obj.getPrVenda());
                 
@@ -64,8 +70,11 @@ public class ProdutoRepositorio extends BancoDados {
          
             produto.setId(resultado.getInt("id"));
             produto.setDescricao(resultado.getString("descricao"));
+            produto.setPrVenda(resultado.getInt("UniCompra"));
+            produto.setPrVenda(resultado.getInt("UniVenda"));
             produto.setPrCompra(resultado.getFloat("prCompra"));
             produto.setPrVenda(resultado.getFloat("prVenda"));
+            
              
             return produto;
             

@@ -14,13 +14,13 @@ import java.util.Objects;
 public class Produto {
     private int id;
     private String descricao;
-    private float uniCompra;
-    private float uniVenda;
+    private int uniCompra;
+    private int uniVenda;
     private float prCompra;
     private float prVenda;
     private Fornecedor fornecedor;
 
-    public Produto(int id, String descricao, float uniCompra, float uniVenda, float prCompra, float prVenda, Fornecedor fornecedor) {
+    public Produto(int id, String descricao, int uniCompra, int uniVenda, float prCompra, float prVenda, Fornecedor fornecedor) {
         this.id = id;
         this.descricao = "";
         this.uniCompra = 0;
@@ -54,7 +54,7 @@ public class Produto {
         return uniCompra;
     }
 
-    public void setUniCompra(float uniCompra) {
+    public void setUniCompra(int uniCompra) {
         this.uniCompra = uniCompra;
     }
 
@@ -62,7 +62,7 @@ public class Produto {
         return uniVenda;
     }
 
-    public void setUniVenda(float uniVenda) {
+    public void setUniVenda(int uniVenda) {
         this.uniVenda = uniVenda;
     }
 
@@ -92,14 +92,14 @@ public class Produto {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + this.id;
-        hash = 97 * hash + Objects.hashCode(this.descricao);
-        hash = 97 * hash + Float.floatToIntBits(this.uniCompra);
-        hash = 97 * hash + Float.floatToIntBits(this.uniVenda);
-        hash = 97 * hash + Float.floatToIntBits(this.prCompra);
-        hash = 97 * hash + Float.floatToIntBits(this.prVenda);
-        hash = 97 * hash + Objects.hashCode(this.fornecedor);
+        int hash = 3;
+        hash = 59 * hash + this.id;
+        hash = 59 * hash + Objects.hashCode(this.descricao);
+        hash = 59 * hash + this.uniCompra;
+        hash = 59 * hash + this.uniVenda;
+        hash = 59 * hash + Float.floatToIntBits(this.prCompra);
+        hash = 59 * hash + Float.floatToIntBits(this.prVenda);
+        hash = 59 * hash + Objects.hashCode(this.fornecedor);
         return hash;
     }
 
@@ -118,10 +118,10 @@ public class Produto {
         if (this.id != other.id) {
             return false;
         }
-        if (Float.floatToIntBits(this.uniCompra) != Float.floatToIntBits(other.uniCompra)) {
+        if (this.uniCompra != other.uniCompra) {
             return false;
         }
-        if (Float.floatToIntBits(this.uniVenda) != Float.floatToIntBits(other.uniVenda)) {
+        if (this.uniVenda != other.uniVenda) {
             return false;
         }
         if (Float.floatToIntBits(this.prCompra) != Float.floatToIntBits(other.prCompra)) {
@@ -139,9 +139,11 @@ public class Produto {
         return true;
     }
 
+   
     @Override
     public String toString() {
         return "Produto{" + "id=" + id + ", descricao=" + descricao + ", uniCompra=" + uniCompra + ", uniVenda=" + uniVenda + ", prCompra=" + prCompra + ", prVenda=" + prVenda + ", fornecedor=" + fornecedor + '}';
     }
+
     
 }

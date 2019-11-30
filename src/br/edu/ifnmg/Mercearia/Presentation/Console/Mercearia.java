@@ -46,7 +46,7 @@ public class Mercearia {
             f.setRazaoSocial("Variados");
             f.setEmail("variado@mail.com");
             f.setRua("Rua B");
-            f.setNumero(12);
+            f.setNumero("12");
             f.setBairro("Limoeiro");
             f.setCidade("Januaaria");
             f.setEstado("MG");
@@ -71,6 +71,8 @@ public class Mercearia {
             p.setDescricao("Café");
             p.setPrCompra((float) 2.50);
             p.setPrVenda((float) 3.00);
+            p.setUniCompra(12);
+            p.setUniVenda(12);
             
             ProdutoRepositorio repP = new ProdutoRepositorio();
             repP.Salvar(p);

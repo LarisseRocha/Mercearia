@@ -5,6 +5,7 @@
  */
 package br.edu.ifnmg.Mercearia.DomainModel;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -21,7 +22,7 @@ public class Fornecedor {
     private String email;
     private List<String> telefones;
     private String rua;
-    private int numero;
+    private String numero;
     private String bairro;
     private String cidade;
     private String estado;
@@ -29,25 +30,41 @@ public class Fornecedor {
     private Produto produto;
     
     Pattern regex_cnpj = Pattern.compile("\\d{2}\\.?\\{3}\\.?{3}\\/?\\{4}-?\\{2}");
-    private Object cnpj_regex;
-                                           
 
-    public Fornecedor(int cnpj, String razaoSocial, String email, String rua, int numero, String bairro, String cidade, String estado) {
-        this.cnpj = "";
+    
+      public Fornecedor() {
+        this.id = 0;
+        this.cnpj = "00000000000000";
         this.razaoSocial = "";
         this.email = "";
+        this.telefones = new ArrayList<>();;
         this.rua = "";
-        this.numero = 0;
+        this.numero = "";
         this.bairro = "";
         this.cidade = "";
         this.estado = "";
         this.situacao = true;
         this.produto = produto;
-    }
-
-    public Fornecedor() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    public Fornecedor(int id, String cnpj, String razaoSocial, String email, List<String> telefones, String rua, String numero, String bairro, String cidade, String estado, boolean situacao, Produto produto) {
+        this.id = id;
+        this.cnpj = cnpj;
+        this.razaoSocial = razaoSocial;
+        this.email = email;
+        this.telefones = telefones;
+        this.rua = rua;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.situacao = situacao;
+        this.produto = produto;
+    }
+ 
+ 
+
+  
 
     public String getCnpj() {
         return cnpj.substring(0, 2)+"."+
@@ -59,12 +76,23 @@ public class Fornecedor {
     }
     
 
-    public void setCnpj(String cnpj) {
-        Matcher v = regex_cnpj.matcher(cnpj);
-        if(v.matches())
-           this.cnpj = cnpj.replace(".","").replace("-","").replace("/","");
+     public void setCpf(String cpf) throws ErroValidacaoException {
+        Matcher m = regex_cnpj.matcher(cpf);
+        if(m.matches())
+            this.cnpj = cpf.replace(".", "").replace("-", "");
+        else
+            throw new ErroValidacaoException("CNPJ Inválido!");
+    }
+    
+    
+   public int getId() {
+        return 0;
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public void setId(int aInt) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     public List<String> getTelefones() {
         return telefones;
     }
@@ -100,13 +128,15 @@ public class Fornecedor {
         this.rua = rua;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
+
+   
 
     public String getBairro() {
         return bairro;
@@ -150,20 +180,20 @@ public class Fornecedor {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 31 * hash + this.id;
-        hash = 31 * hash + Objects.hashCode(this.cnpj);
-        hash = 31 * hash + Objects.hashCode(this.razaoSocial);
-        hash = 31 * hash + Objects.hashCode(this.email);
-        hash = 31 * hash + Objects.hashCode(this.telefones);
-        hash = 31 * hash + Objects.hashCode(this.rua);
-        hash = 31 * hash + this.numero;
-        hash = 31 * hash + Objects.hashCode(this.bairro);
-        hash = 31 * hash + Objects.hashCode(this.cidade);
-        hash = 31 * hash + Objects.hashCode(this.estado);
-        hash = 31 * hash + (this.situacao ? 1 : 0);
-        hash = 31 * hash + Objects.hashCode(this.produto);
-        hash = 31 * hash + Objects.hashCode(this.cnpj_regex);
+        int hash = 7;
+        hash = 97 * hash + this.id;
+        hash = 97 * hash + Objects.hashCode(this.cnpj);
+        hash = 97 * hash + Objects.hashCode(this.razaoSocial);
+        hash = 97 * hash + Objects.hashCode(this.email);
+        hash = 97 * hash + Objects.hashCode(this.telefones);
+        hash = 97 * hash + Objects.hashCode(this.rua);
+        hash = 97 * hash + Objects.hashCode(this.numero);
+        hash = 97 * hash + Objects.hashCode(this.bairro);
+        hash = 97 * hash + Objects.hashCode(this.cidade);
+        hash = 97 * hash + Objects.hashCode(this.estado);
+        hash = 97 * hash + (this.situacao ? 1 : 0);
+        hash = 97 * hash + Objects.hashCode(this.produto);
+        hash = 97 * hash + Objects.hashCode(this.regex_cnpj);
         return hash;
     }
 
@@ -182,9 +212,6 @@ public class Fornecedor {
         if (this.id != other.id) {
             return false;
         }
-        if (this.numero != other.numero) {
-            return false;
-        }
         if (this.situacao != other.situacao) {
             return false;
         }
@@ -198,6 +225,9 @@ public class Fornecedor {
             return false;
         }
         if (!Objects.equals(this.rua, other.rua)) {
+            return false;
+        }
+        if (!Objects.equals(this.numero, other.numero)) {
             return false;
         }
         if (!Objects.equals(this.bairro, other.bairro)) {
@@ -215,7 +245,7 @@ public class Fornecedor {
         if (!Objects.equals(this.produto, other.produto)) {
             return false;
         }
-        if (!Objects.equals(this.cnpj_regex, other.cnpj_regex)) {
+        if (!Objects.equals(this.regex_cnpj, other.regex_cnpj)) {
             return false;
         }
         return true;
@@ -223,15 +253,14 @@ public class Fornecedor {
 
     @Override
     public String toString() {
-        return "Fornecedor{" + "id=" + id + ", cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", email=" + email + ", telefones=" + telefones + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", situacao=" + situacao + ", produto=" + produto + ", cnpj_regex=" + cnpj_regex + '}';
-    }
-    
-        public int getId() {
-        return 0;
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Fornecedor{" + "id=" + id + ", cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", email=" + email + ", telefones=" + telefones + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", situacao=" + situacao + ", produto=" + produto + ", regex_cnpj=" + regex_cnpj + '}';
     }
 
-    public void setId(int aInt) {
+     
+    
+      
+
+    public void setCnpj(String string) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

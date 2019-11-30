@@ -26,7 +26,7 @@ public class ClienteRepositorio extends BancoDados {
            
           if(obj.getId() == 0){
             PreparedStatement sql =  this.getConexao()
-                .prepareStatement("insert into Clientes(nome, cpf, email, rua, numero, bairro, cidade, estado, situacao) values(?,?,?,?,?,?,?,?,?,?)");
+                .prepareStatement("insert into Clientes(nome, cpf, email, rua, numero, bairro, cidade, estado, situacao) values(?,?,?,?,?,?,?,?,?)");
             
             sql.setString(1, obj.getNome());
             sql.setString(2, obj.getCpf().replace(".", " ").replace("-", " "));
@@ -70,7 +70,7 @@ public class ClienteRepositorio extends BancoDados {
        }
         return false;
     }
-    public Cliente Abrir(int id) throws ErroValidacaoException{
+    public Cliente Abrir(int id){
         try{
             PreparedStatement sql = this.getConexao()
                     .prepareStatement("select * from Clientes where id = ?");
@@ -78,17 +78,27 @@ public class ClienteRepositorio extends BancoDados {
             ResultSet resultado = sql.executeQuery();
             resultado.next();
             Cliente cliente = new Cliente();
+            
+            
          
-            cliente.setId(resultado.getInt("id"));
-            cliente.setNome(resultado.getString("nome"));
-            cliente.setCpf(resultado.getString("cpf"));
-            cliente.setEmail(resultado.getString("email"));
-            cliente.setRua(resultado.getString("rua"));
-            cliente.setNumero(resultado.getString("numero"));
-            cliente.setBairro(resultado.getString("bairro"));
-            cliente.setCidade(resultado.getString("cidade"));
-            cliente.setEstado(resultado.getString("estado"));
-            cliente.setSituacao(resultado.getBoolean("situacao"));
+            
+            
+              try {
+                    cliente.setId(resultado.getInt("id"));
+                    cliente.setNome(resultado.getString("nome"));
+                    cliente.setCpf(resultado.getString("cpf"));
+                    cliente.setEmail(resultado.getString("email"));
+                    cliente.setRua(resultado.getString("rua"));
+                    cliente.setNumero(resultado.getString("numero"));
+                    cliente.setBairro(resultado.getString("bairro"));
+                    cliente.setCidade(resultado.getString("cidade"));
+                    cliente.setEstado(resultado.getString("estado"));
+                    cliente.setSituacao(resultado.getBoolean("situacao"));
+               
+             } catch(Exception ex){
+                 cliente = null;
+             }
+             
            
              
             return cliente;
