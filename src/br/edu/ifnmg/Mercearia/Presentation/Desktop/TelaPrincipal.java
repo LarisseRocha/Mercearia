@@ -32,7 +32,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnLogin = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(java.awt.Color.white);
 
+        jMenu1.setBackground(java.awt.Color.blue);
         jMenu1.setText("Sistema");
 
         mnLogin.setText("Login");
@@ -51,11 +53,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 633, Short.MAX_VALUE)
+            .addGap(0, 511, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 397, Short.MAX_VALUE)
+            .addGap(0, 370, Short.MAX_VALUE)
         );
 
         pack();
@@ -66,7 +68,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         LoginUsuario tela = new LoginUsuario();
         this.add(tela);
         tela.show();
-        
+       
     }//GEN-LAST:event_mnLoginActionPerformed
 
     /**

@@ -11,11 +11,13 @@ package br.edu.ifnmg.Mercearia.Presentation.Desktop;
  */
 public class Cadastros extends javax.swing.JInternalFrame {
 
+   private ClienteEditar cliente;
     /**
      * Creates new form Cadastros
      */
     public Cadastros() {
         initComponents();
+        
     }
 
     /**
@@ -27,16 +29,20 @@ public class Cadastros extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnCadCliente = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btnCliente = new javax.swing.JButton();
         btnFornecedor = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setTitle("Cadastros");
 
-        btnCadCliente.setText("Cadastrar cliente");
-        btnCadCliente.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setBackground(java.awt.Color.white);
+
+        btnCliente.setText("Cadastrar cliente");
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadClienteActionPerformed(evt);
+                btnClienteActionPerformed(evt);
             }
         });
 
@@ -47,48 +53,61 @@ public class Cadastros extends javax.swing.JInternalFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFornecedor))
+                .addContainerGap(142, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(btnCliente)
+                .addGap(58, 58, 58)
+                .addComponent(btnFornecedor)
+                .addContainerGap(108, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCadCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(136, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(btnCadCliente)
-                .addGap(40, 40, 40)
-                .addComponent(btnFornecedor)
-                .addContainerGap(114, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadClienteActionPerformed
+    private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
         // TODO add your handling code here:
-       ClienteCadastrar tela = new ClienteCadastrar();
+       ClienteEditar tela = new ClienteEditar();
        this.getParent().add(tela);
        tela.show();
-        
-    }//GEN-LAST:event_btnCadClienteActionPerformed
+       
+       
+    }//GEN-LAST:event_btnClienteActionPerformed
 
     private void btnFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFornecedorActionPerformed
-                // TODO add your handling code here:
-         CadastrarFornecedor tela = new CadastrarFornecedor();
-         this.getParent().add(tela);
-         tela.show();
+        // TODO add your handling code here:
+        FornecedorEditar tela = new FornecedorEditar();
+        this.getParent().add(tela);
+        tela.show();
     }//GEN-LAST:event_btnFornecedorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadCliente;
+    private javax.swing.JButton btnCliente;
     private javax.swing.JButton btnFornecedor;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
