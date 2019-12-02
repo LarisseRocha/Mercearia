@@ -45,7 +45,7 @@ public class Fornecedor {
         this.estado = Estado.AC;
         this.situacao = Situacao.ATIVO;
         //this.produto = produto;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
     public Fornecedor(int id, String cnpj, String razaoSocial, String email, List<String> telefones, String rua, String numero, String bairro, String cidade, String estado, boolean situacao, Produto produto) {
         this.id = id;
