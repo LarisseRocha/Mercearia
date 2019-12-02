@@ -17,9 +17,9 @@ public class Usuario {
     private String senha;
 
     public Usuario(int id, String cpf, String senha) {
-        this.id = id;
-        this.cpf = cpf;
-        this.senha = senha;
+         this.id = id;
+         this.cpf = cpf;
+         this.senha = senha;
     }
 
     public Usuario() {
