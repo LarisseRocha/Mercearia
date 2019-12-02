@@ -76,14 +76,14 @@ public class FornecedorRepositorio extends BancoDados {
     public void atualizarTelefones(Fornecedor fornecedor){
         try {
             PreparedStatement sql = this.getConexao()
-                    .prepareStatement("delete from FornecedorsTelefone where fornecedor_id = ?");
+                    .prepareStatement("delete from FornecedoresTelefone where fornecedor_id = ?");
             
             sql.setInt(1, fornecedor.getId());
             
            sql.execute();
            
            PreparedStatement sql2 = this.getConexao()
-                   .prepareStatement("insert into FornecedorsTelefone(fornecedor_id, telefone) VALUES (?, ?) ");
+                   .prepareStatement("insert into FornecedoresTelefone(fornecedor_id, telefone) VALUES (?, ?) ");
                 
             
             
@@ -104,14 +104,14 @@ public class FornecedorRepositorio extends BancoDados {
      public void abrirTelefones(Fornecedor fornecedor){
         try {
             PreparedStatement sql = this.getConexao()
-                    .prepareStatement("select telefone from FornecedorsTelefone where fornecedor_id = ?");
+                    .prepareStatement("select telefone from FornecedoresTelefone where fornecedor_id = ?");
             
             sql.setInt(1, fornecedor.getId());
             
             ResultSet resultado = sql.executeQuery();
             
             while(resultado.next()){
-                fornecedor.addTelefone(resultado.getString("telefone"));
+                 fornecedor.addTelefone(resultado.getString("telefone"));
             }
             
         } catch (SQLException ex) {
@@ -122,7 +122,7 @@ public class FornecedorRepositorio extends BancoDados {
      public Fornecedor Abrir(int id){
         try{
             PreparedStatement sql = this.getConexao()
-                    .prepareStatement("select * from Fornecedors where id = ?");
+                    .prepareStatement("select * from Fornecedores where id = ?");
             sql.setInt(1, id);
             ResultSet resultado = sql.executeQuery();
             resultado.next();
