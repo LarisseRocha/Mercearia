@@ -25,35 +25,45 @@ public class Cliente {
     private String numero;
     private String bairro;
     private String cidade;
-    private String estado;
-    public boolean situacao;
+    private Estado estado;
+    private Situacao situacao;
     
-    Pattern  regex_cpf = Pattern.compile("\\d{3}\\.?\\d{3}\\.?\\d{3}\\-?\\d{2}");
-    public Cliente(String nome, String cpf, String email, List<String> telefones, String rua, String numero, String bairro, String cidade, String estado) {
+    Pattern  regex_cpf = Pattern.compile("\\d{3}\\.?\\d{3}\\.?\\d{3}-?\\d{2}");
+
+    public Cliente(int id, String nome, String cpf, String email, List<String> telefones, String rua, String numero, String bairro, String cidade, Estado estado, Situacao situacao) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.telefones = new ArrayList<>();
+        this.rua = rua;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = bairro;
+        this.estado = estado;
+        this.situacao = situacao;
+    }
+    
+      public Cliente() {
         this.nome = "";
-        this.cpf = "00000000000";
+        this.cpf = "000.000.000-00";
         this.email = "";
         this.telefones = new ArrayList<>();
         this.rua = "";
         this.numero = "";
         this.bairro = "";
         this.cidade = "";
-        this.estado = "";
-        this.situacao = true;
+        this.estado = Estado.AC;
+        this.situacao = Situacao.ATIVO;
     }
 
-    public Cliente() {
-        
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     public int getId() {
-        return 0;
+        return id;
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setId(int aInt) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -86,10 +96,24 @@ public class Cliente {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public List<String> getTelefones() {
+        return telefones;
+    }
+
+    public void setTelefones(List<String> telefones) {
+        this.telefones = telefones;
+    }
+    
     
     public void addTelefone(String telefone){
         if(!this.telefones.contains(telefone))
             this.telefones.add(telefone);
+    }
+    
+    public void removeTelefone(String telefone){
+        if(!this.telefones.contains(telefone))
+            this.telefones.remove(telefone);
     }
 
 
@@ -126,37 +150,36 @@ public class Cliente {
         this.cidade = cidade;
     }
 
-    public String getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
-    public boolean isSituacao() {
+    public Situacao getSituacao() {
         return situacao;
     }
 
-    public void setSituacao(boolean situacao) {
+    public void setSituacao(Situacao situacao) {
         this.situacao = situacao;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + this.id;
-        hash = 89 * hash + Objects.hashCode(this.nome);
-        hash = 89 * hash + Objects.hashCode(this.cpf);
-        hash = 89 * hash + Objects.hashCode(this.email);
-        hash = 89 * hash + Objects.hashCode(this.telefones);
-        hash = 89 * hash + Objects.hashCode(this.rua);
-        hash = 89 * hash + Objects.hashCode(this.numero);
-        hash = 89 * hash + Objects.hashCode(this.bairro);
-        hash = 89 * hash + Objects.hashCode(this.cidade);
-        hash = 89 * hash + Objects.hashCode(this.estado);
-        hash = 89 * hash + (this.situacao ? 1 : 0);
-        hash = 89 * hash + Objects.hashCode(this.regex_cpf);
+        int hash = 5;
+        hash = 23 * hash + this.id;
+        hash = 23 * hash + Objects.hashCode(this.nome);
+        hash = 23 * hash + Objects.hashCode(this.cpf);
+        hash = 23 * hash + Objects.hashCode(this.email);
+        hash = 23 * hash + Objects.hashCode(this.telefones);
+        hash = 23 * hash + Objects.hashCode(this.rua);
+        hash = 23 * hash + Objects.hashCode(this.numero);
+        hash = 23 * hash + Objects.hashCode(this.bairro);
+        hash = 23 * hash + Objects.hashCode(this.cidade);
+        hash = 23 * hash + Objects.hashCode(this.estado);
+        hash = 23 * hash + Objects.hashCode(this.situacao);
         return hash;
     }
 
@@ -173,9 +196,6 @@ public class Cliente {
         }
         final Cliente other = (Cliente) obj;
         if (this.id != other.id) {
-            return false;
-        }
-        if (this.situacao != other.situacao) {
             return false;
         }
         if (!Objects.equals(this.nome, other.nome)) {
@@ -199,13 +219,13 @@ public class Cliente {
         if (!Objects.equals(this.cidade, other.cidade)) {
             return false;
         }
-        if (!Objects.equals(this.estado, other.estado)) {
-            return false;
-        }
         if (!Objects.equals(this.telefones, other.telefones)) {
             return false;
         }
-        if (!Objects.equals(this.regex_cpf, other.regex_cpf)) {
+        if (this.estado != other.estado) {
+            return false;
+        }
+        if (this.situacao != other.situacao) {
             return false;
         }
         return true;
@@ -213,11 +233,15 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", telefones=" + telefones + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", situacao=" + situacao + ", regex_cpf=" + regex_cpf + '}';
+        return "Cliente{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", telefones=" + telefones + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", situacao=" + situacao + '}';
     }
 
+  
+
+   
+   
     public void getCliente() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
    
