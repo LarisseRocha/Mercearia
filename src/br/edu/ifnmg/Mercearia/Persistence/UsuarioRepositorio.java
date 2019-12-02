@@ -25,7 +25,7 @@ public class UsuarioRepositorio extends BancoDados {
         try{
             if(obj.getId()==0){
                 PreparedStatement sql = this.getConexao()
-                        .prepareStatement("insert into Usuario(cpf, senha) values(?,?)");
+                        .prepareStatement("insert into Usuario(cpf, senha) values(?, ?)");
                 sql.setString(1, obj.getCpf());
                 sql.setString(2, obj.getSenha());
                 
