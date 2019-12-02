@@ -24,7 +24,7 @@ public class CompraRepositorio extends BancoDados {
         
        try{
           if(obj.getId() == 0){
-            PreparedStatement sql = this.getConexao()
+            PreparedStatement sql  = this.getConexao()
                   .prepareStatement("insert into Compras(valorTotal, dtVenda, operador, Fornecedor) values(?,?,?,?)");
             sql.setFloat(1, obj.getValorTotal());
             sql.setDate(2, (Date) obj.getDtVenda());
