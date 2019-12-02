@@ -5,10 +5,15 @@
  */
 package br.edu.ifnmg.Mercearia.Persistence;
 
+import br.edu.ifnmg.Mercearia.DomainModel.Estado;
 import br.edu.ifnmg.Mercearia.DomainModel.Fornecedor;
+import br.edu.ifnmg.Mercearia.DomainModel.Situacao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,7 +29,8 @@ public class FornecedorRepositorio extends BancoDados {
            
           if(obj.getId() == 0){
             PreparedStatement sql =  this.getConexao()
-                .prepareStatement("insert into Fornecedores(cnpj, razaoSocial, email, rua, numero, bairro, cidade, estado, situacao) values(?,?,?,?,?,?,?,?,?)");
+                .prepareStatement("insert into Fornecedores(cnpj, razaoSocial, email, rua, numero, bairro, cidade, estado, situacao) values(?,?,?,?,?,?,?,?,?)",
+                    Statement.RETURN_GENERATED_KEYS);
             
             sql.setString(1, obj.getCnpj().replace(".", " ").replace("/", " ").replace("-", " "));
             sql.setString(2, obj.getRazaoSocial());
@@ -33,8 +39,8 @@ public class FornecedorRepositorio extends BancoDados {
             sql.setString(5, obj.getNumero());
             sql.setString(6, obj.getBairro());
             sql.setString(7, obj.getCidade());
-            sql.setString(8, obj.getEstado());
-            sql.setBoolean(9, obj.isSituacao());
+            sql.setString(8, obj.getEstado().name());
+            sql.setString(9, obj.getSituacao().name());
             
             
             if(sql.executeUpdate() > 0){
@@ -53,8 +59,8 @@ public class FornecedorRepositorio extends BancoDados {
                sql.setString(5, obj.getNumero());
                sql.setString(6, obj.getBairro());
                sql.setString(7, obj.getCidade());
-               sql.setString(8, obj.getEstado());
-               sql.setBoolean(9, obj.isSituacao());
+               sql.setString(8, obj.getEstado().name());
+               sql.setString(9, obj.getSituacao().name());
                
                if(sql.executeUpdate()>0)
                    return true;
@@ -67,6 +73,51 @@ public class FornecedorRepositorio extends BancoDados {
         return false;
     }
     
+    public void atualizarTelefones(Fornecedor fornecedor){
+        try {
+            PreparedStatement sql = this.getConexao()
+                    .prepareStatement("delete from FornecedorsTelefone where fornecedor_id = ?");
+            
+            sql.setInt(1, fornecedor.getId());
+            
+           sql.execute();
+           
+           PreparedStatement sql2 = this.getConexao()
+                   .prepareStatement("insert into FornecedorsTelefone(fornecedor_id, telefone) VALUES (?, ?) ");
+                
+            
+            
+    
+            for(String telefone : fornecedor.getTelefones()){
+                sql2.setInt(1, fornecedor.getId());
+                sql2.setString(2, telefone);
+                sql2.execute();
+               
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FornecedorRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+     public void abrirTelefones(Fornecedor fornecedor){
+        try {
+            PreparedStatement sql = this.getConexao()
+                    .prepareStatement("select telefone from FornecedorsTelefone where fornecedor_id = ?");
+            
+            sql.setInt(1, fornecedor.getId());
+            
+            ResultSet resultado = sql.executeQuery();
+            
+            while(resultado.next()){
+                fornecedor.addTelefone(resultado.getString("telefone"));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FornecedorRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
      public Fornecedor Abrir(int id){
         try{
@@ -89,8 +140,8 @@ public class FornecedorRepositorio extends BancoDados {
                         fornecedor.setNumero(resultado.getString("numero"));
                         fornecedor.setBairro(resultado.getString("bairro"));
                         fornecedor.setCidade(resultado.getString("cidade"));
-                        fornecedor.setEstado(resultado.getString("estado"));
-                        fornecedor.setSituacao(resultado.getBoolean("situacao"));
+                        fornecedor.setEstado(Estado.valueOf(resultado.getString("estado")));
+                        fornecedor.setSituacao(Situacao.valueOf(resultado.getString("situacao")));
                
              } catch(Exception ex){
                  fornecedor = null;
