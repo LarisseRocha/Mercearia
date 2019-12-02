@@ -44,8 +44,8 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
     public void setFornecedor(Fornecedor fornecedor){
         this.fornecedor = fornecedor;
         txtRazaoSocial.setText(fornecedor.getRazaoSocial());
-        txtCnpj.setText(fornecedor.getCnpj());
         txtEmail.setText(fornecedor.getEmail());
+        txtCnpj.setText(fornecedor.getCnpj());
         txtRua.setText(fornecedor.getRua());
         txtCidade.setText(fornecedor.getNumero());
         txtBairro.setText(fornecedor.getBairro());
@@ -56,8 +56,8 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
     }
     
      public Fornecedor getFornecedor() throws ErroValidacaoException{
-        this.fornecedor.setRazaoSocial(txtRazaoSocial.getText());
         this.fornecedor.setCnpj(txtCnpj.getText());
+        this.fornecedor.setRazaoSocial(txtRazaoSocial.getText());
         this.fornecedor.setEmail(txtEmail.getText());
         this.fornecedor.setRua(txtRua.getText());
         this.fornecedor.setNumero(txtNumero.getText());
@@ -399,8 +399,7 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
 
                        if(this.repositorio.Salvar(fornecedor) ){
                            JOptionPane.showMessageDialog(null, "Fornecedor Salvo com sucesso!");
-                           System.out.println("aaaa");
-                           
+             
                        }
                        else{
                            JOptionPane.showMessageDialog(null, "Erro ao salvar os dados, contate o administrador do sistema!");
