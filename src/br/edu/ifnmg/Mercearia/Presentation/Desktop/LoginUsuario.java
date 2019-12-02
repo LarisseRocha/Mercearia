@@ -114,10 +114,10 @@ public class LoginUsuario extends javax.swing.JInternalFrame {
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
         if(txtUsuario.getText().equals("usuario") && txtSenha.getText().equals("123")){
-            Cadastros tela = new Cadastros();
-            this.getParent().add(tela);
-            tela.show();
-            dispose();
+                Cadastros tela = new Cadastros();
+                this.getParent().add(tela);
+                tela.show();
+                dispose();
         }else
             JOptionPane.showMessageDialog(null, "Dados incorretos");
         
