@@ -60,7 +60,7 @@ public class Compra {
     }
 
     public String getOperador() {
-        return operador;
+         return operador;
     }
 
     public void setOperador(String operador) {
