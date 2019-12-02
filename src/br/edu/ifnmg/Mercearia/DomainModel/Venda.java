@@ -110,7 +110,7 @@ public class Venda {
 
     @Override
     public String toString() {
-        return "Venda{" + "id=" + id + ", valorTotal=" + valorTotal + ", dtVenda=" + dtVenda + ", operador=" + operador + ", cliente=" + cliente + '}';
+         return "Venda{" + "id=" + id + ", valorTotal=" + valorTotal + ", dtVenda=" + dtVenda + ", operador=" + operador + ", cliente=" + cliente + '}';
     }
 
 
