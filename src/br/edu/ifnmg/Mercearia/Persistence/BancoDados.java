@@ -22,8 +22,8 @@ public class BancoDados {
         }catch(ClassNotFoundException ex){
             System.out.println("Driver do banco de dados não encontrado");
         }catch(SQLException ex){
-           System.out.println("Os dados de conexão com o banco de dados estão errados"); 
-           System.out.println(ex.getMessage());
+            System.out.println("Os dados de conexão com o banco de dados estão errados"); 
+            System.out.println(ex.getMessage());
         }              
         
         
