@@ -16,7 +16,7 @@ public class Cadastros extends javax.swing.JInternalFrame {
      * Creates new form Cadastros
      */
     public Cadastros() {
-         initComponents();     
+        initComponents();     
     }
 
     /**
@@ -68,9 +68,9 @@ public class Cadastros extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addComponent(btnCliente)
-                .addGap(59, 59, 59)
+                .addGap(62, 62, 62)
                 .addComponent(btnFornecedor)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
