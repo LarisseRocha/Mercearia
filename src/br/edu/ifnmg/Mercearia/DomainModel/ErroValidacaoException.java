@@ -12,7 +12,7 @@ package br.edu.ifnmg.Mercearia.DomainModel;
 public class ErroValidacaoException extends Exception {
     
     public ErroValidacaoException (String Message){
-        super(  Message);
+         super(  Message);
     }
     
 }
