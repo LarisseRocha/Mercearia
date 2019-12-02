@@ -68,9 +68,9 @@ public class Cadastros extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(btnCliente)
-                .addGap(58, 58, 58)
+                .addGap(61, 61, 61)
                 .addComponent(btnFornecedor)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
