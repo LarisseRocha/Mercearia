@@ -7,8 +7,10 @@ package br.edu.ifnmg.Mercearia.Presentation.Console;
 
 import br.edu.ifnmg.Mercearia.DomainModel.Cliente;
 import br.edu.ifnmg.Mercearia.DomainModel.ErroValidacaoException;
+import br.edu.ifnmg.Mercearia.DomainModel.Estado;
 import br.edu.ifnmg.Mercearia.DomainModel.Fornecedor;
 import br.edu.ifnmg.Mercearia.DomainModel.Produto;
+import br.edu.ifnmg.Mercearia.DomainModel.Situacao;
 import br.edu.ifnmg.Mercearia.DomainModel.Usuario;
 import br.edu.ifnmg.Mercearia.Persistence.ClienteRepositorio;
 import br.edu.ifnmg.Mercearia.Persistence.FornecedorRepositorio;
@@ -34,8 +36,8 @@ public class Mercearia {
             a2.setEmail("aaa@mail.com");
             a2.setBairro("Centro");
             a2.setCidade("Januária");
-            a2.setEstado("Minas Gerais");
-            a2.setSituacao(true);
+            a2.setEstado(Estado.AC);
+            a2.setSituacao(Situacao.ATIVO);
             
             ClienteRepositorio repo = new ClienteRepositorio();
             repo.Salvar(a2);
@@ -50,7 +52,7 @@ public class Mercearia {
             f.setBairro("Limoeiro");
             f.setCidade("Januaaria");
             f.setEstado("MG");
-            f.setSituacao(true);
+            f.setSituacao(Situacao.ATIVO);
             
             FornecedorRepositorio repF = new FornecedorRepositorio();
             repF.Salvar(f);

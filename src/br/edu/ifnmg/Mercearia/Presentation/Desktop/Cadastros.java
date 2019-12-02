@@ -93,6 +93,7 @@ public class Cadastros extends javax.swing.JInternalFrame {
        ClienteEditar tela = new ClienteEditar();
        this.getParent().add(tela);
        tela.show();
+       dispose();
        
        
     }//GEN-LAST:event_btnClienteActionPerformed
@@ -102,6 +103,7 @@ public class Cadastros extends javax.swing.JInternalFrame {
         FornecedorEditar tela = new FornecedorEditar();
         this.getParent().add(tela);
         tela.show();
+        dispose();
     }//GEN-LAST:event_btnFornecedorActionPerformed
 
 

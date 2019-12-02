@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class LoginUsuario extends javax.swing.JInternalFrame {
 
+    
     /**
      * Creates new form LoginUsuario
      */
@@ -38,7 +39,7 @@ public class LoginUsuario extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
-        setTitle("Login");
+        setTitle("Login usuário");
 
         jPanel1.setBackground(java.awt.Color.white);
 
@@ -46,6 +47,7 @@ public class LoginUsuario extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Senha:");
 
+        btnEntrar.setBackground(new java.awt.Color(204, 204, 255));
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,6 +117,7 @@ public class LoginUsuario extends javax.swing.JInternalFrame {
             Cadastros tela = new Cadastros();
             this.getParent().add(tela);
             tela.show();
+            dispose();
         }else
             JOptionPane.showMessageDialog(null, "Dados incorretos");
         
