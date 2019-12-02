@@ -144,7 +144,7 @@ public class ClienteRepositorio extends BancoDados {
             sql.setInt(1, id);
             ResultSet resultado = sql.executeQuery();
             resultado.next();
-            Cliente cliente = new Cliente();
+            Cliente cliente =  new Cliente();
             
             
          
