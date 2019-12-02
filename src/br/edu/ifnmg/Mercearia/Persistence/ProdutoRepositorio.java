@@ -34,7 +34,7 @@ public class ProdutoRepositorio extends BancoDados {
                 
 
                 if(sql.executeUpdate()>0){
-                    return true;
+                     return true;
                 }else
                     return false;
             }else{
