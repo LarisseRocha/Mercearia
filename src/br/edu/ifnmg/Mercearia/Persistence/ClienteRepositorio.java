@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -91,28 +92,23 @@ public class ClienteRepositorio extends BancoDados {
             PreparedStatement sql = this.getConexao()
                     .prepareStatement("delete from ClientesTelefone where cliente_id = ?");
             
-            sql.setInt(1, cliente.getId());
+           sql.setInt(1, cliente.getId());
             
-           sql.execute();
+           sql.executeUpdate();
            
            PreparedStatement sql2 = this.getConexao()
-                   .prepareStatement("insert into ClientesTelefone(cliente_id, telefone) VALUES (?, ?) ");
+                   .prepareStatement("insert into ClientesTelefone(cliente_id, telefone) VALUES (?,?) ");
                 
             
             
     
             for(String telefone : cliente.getTelefones()){
-                System.out.println(cliente.getId());
-                System.out.println(telefone);
                 sql2.setInt(1, cliente.getId());
                 sql2.setString(2, telefone);
-                sql2.execute();
+                sql2.executeUpdate();
                
             }
             
-            
-            
-           
             
         } catch (SQLException ex) {
             Logger.getLogger(ClienteRepositorio.class.getName()).log(Level.SEVERE, null, ex);
@@ -133,7 +129,7 @@ public class ClienteRepositorio extends BancoDados {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(ClienteRepositorio.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"Erro ao abrir telefone");
         }
     }
 
