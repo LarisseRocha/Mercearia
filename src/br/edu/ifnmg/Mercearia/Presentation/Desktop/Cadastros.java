@@ -31,7 +31,7 @@ public class Cadastros extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         btnCliente = new javax.swing.JButton();
         btnFornecedor = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnCadProduto = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
@@ -53,7 +53,7 @@ public class Cadastros extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Cadastrar produto");
+        btnCadProduto.setText("Cadastrar produto");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -62,7 +62,7 @@ public class Cadastros extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(115, 115, 115)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCadProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFornecedor))
                 .addContainerGap(142, Short.MAX_VALUE))
@@ -72,11 +72,11 @@ public class Cadastros extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(71, 71, 71)
                 .addComponent(btnCliente)
-                .addGap(37, 37, 37)
+                .addGap(38, 38, 38)
                 .addComponent(btnFornecedor)
-                .addGap(35, 35, 35)
-                .addComponent(jButton1)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addComponent(btnCadProduto)
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -105,17 +105,17 @@ public class Cadastros extends javax.swing.JInternalFrame {
 
     private void btnFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFornecedorActionPerformed
         // TODO add your handling code here:
-        /*FornecedorEditar tela = new FornecedorEditar();
+        FornecedorEditar tela = new FornecedorEditar();
         this.getParent().add(tela);
         tela.show();
-        dispose();*/
+        dispose();
     }//GEN-LAST:event_btnFornecedorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCadProduto;
     private javax.swing.JButton btnCliente;
     private javax.swing.JButton btnFornecedor;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
