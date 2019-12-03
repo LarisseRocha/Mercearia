@@ -105,10 +105,10 @@ public class Cadastros extends javax.swing.JInternalFrame {
 
     private void btnFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFornecedorActionPerformed
         // TODO add your handling code here:
-        FornecedorEditar tela = new FornecedorEditar();
+        /*FornecedorEditar tela = new FornecedorEditar();
         this.getParent().add(tela);
         tela.show();
-        dispose();
+        dispose();*/
     }//GEN-LAST:event_btnFornecedorActionPerformed
 
 
