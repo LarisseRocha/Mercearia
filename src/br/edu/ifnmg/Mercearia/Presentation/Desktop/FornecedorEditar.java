@@ -116,7 +116,6 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTelefones = new javax.swing.JList<>();
         btnApagar = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -133,7 +132,7 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("Fornecedores");
-        setPreferredSize(new java.awt.Dimension(317, 361));
+        setPreferredSize(new java.awt.Dimension(707, 541));
 
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -330,21 +329,6 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
 
         jTabbedPane2.addTab("Telefones", jPanel6);
 
-        jPanel7.setBackground(java.awt.Color.white);
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 605, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 254, Short.MAX_VALUE)
-        );
-
-        jTabbedPane2.addTab("Produto", jPanel7);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -374,7 +358,7 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                        .addComponent(jTabbedPane2)
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
@@ -387,7 +371,7 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
-         try{
+        try{
               this.fornecedor = getFornecedor();
              
             }catch(ErroValidacaoException ex){
@@ -399,13 +383,17 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
 
                        if(this.repositorio.Salvar(fornecedor) ){
                            JOptionPane.showMessageDialog(null, "Fornecedor Salvo com sucesso!");
+                           Cadastros tela = new Cadastros();
+                           this.getParent().add(tela);
+                           tela.show();
+                           dispose();
              
                        }
                        else{
                            JOptionPane.showMessageDialog(null, "Erro ao salvar os dados, contate o administrador do sistema!");
                        }
             }else
-                JOptionPane.showMessageDialog(null, "Operação cancelada!");  
+                JOptionPane.showMessageDialog(null, "Operação cancelada!"); 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void tblTelefonesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTelefonesMouseClicked
@@ -447,7 +435,6 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
