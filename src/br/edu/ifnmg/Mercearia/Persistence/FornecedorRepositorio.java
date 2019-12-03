@@ -5,6 +5,7 @@
  */
 package br.edu.ifnmg.Mercearia.Persistence;
 
+import br.edu.ifnmg.Mercearia.DomainModel.ErroValidacaoException;
 import br.edu.ifnmg.Mercearia.DomainModel.Estado;
 import br.edu.ifnmg.Mercearia.DomainModel.Fornecedor;
 import br.edu.ifnmg.Mercearia.DomainModel.Situacao;
@@ -12,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -156,5 +159,40 @@ public class FornecedorRepositorio extends BancoDados {
         }
         return null;
     }
+     
+     public List<Fornecedor> Buscar(Fornecedor forn) throws SQLException, ErroValidacaoException{
+         
+         try{
+                PreparedStatement sql = this.getConexao()
+                        .prepareStatement("select * from fornecedores");
+                ResultSet resultado = sql.executeQuery();
+                List<Fornecedor> fornecedores = new ArrayList();
+
+                while(resultado.next()){
+                    Fornecedor f = new Fornecedor();
+
+                    f.setId(resultado.getInt("id"));
+                    f.setCnpj(resultado.getString("cnpj"));
+                    f.setRazaoSocial(resultado.getString("razaoSocial"));
+                    f.setEmail(resultado.getString("email"));
+                    f.setRua(resultado.getString("rua"));
+                    f.setNumero(resultado.getString("numero"));
+                    f.setBairro(resultado.getString("bairro"));
+                    f.setCidade(resultado.getString("cidade"));
+                    f.setEstado(Estado.valueOf(resultado.getString("estado")));
+                    f.setSituacao(Situacao.valueOf(resultado.getString("situacao")));
+
+                    fornecedores.add(f);
+
+                }
+
+               return fornecedores;
+               
+         }catch(SQLException ex){
+             System.out.println(ex.getMessage());
+         }
+             
+        return null; 
+     }
     
 }
