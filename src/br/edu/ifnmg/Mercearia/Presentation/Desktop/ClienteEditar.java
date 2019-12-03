@@ -42,6 +42,10 @@ public class ClienteEditar extends javax.swing.JInternalFrame {
       
     }
    
+
+   
+
+
      public void setCliente(Cliente cliente){
         this.cliente = cliente;
         txtNome.setText(cliente.getNome());
@@ -364,10 +368,6 @@ public class ClienteEditar extends javax.swing.JInternalFrame {
 
                        if(this.repositorio.Salvar(cliente) ){
                            JOptionPane.showMessageDialog(null, "Cliente Salvo com sucesso!");
-                            Cadastros tela = new Cadastros();
-                            this.getParent().add(tela);
-                            tela.show();
-                            dispose();
                            
                        }
                        else{
