@@ -115,6 +115,8 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
         txtAdicionar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTelefones = new javax.swing.JList<>();
+        btnApagar = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -131,7 +133,7 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("Fornecedores");
-        setPreferredSize(new java.awt.Dimension(752, 480));
+        setPreferredSize(new java.awt.Dimension(317, 361));
 
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -154,7 +156,6 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
         );
 
         jPanel8.setBackground(java.awt.Color.white);
-        jPanel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel10.setText("CNPJ:");
 
@@ -222,7 +223,7 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
                             .addComponent(jLabel11)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(txtRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,9 +278,6 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
 
         jTabbedPane2.addTab("Dados", jPanel5);
 
-        jPanel6.setBackground(java.awt.Color.white);
-        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
         txtAdicionar.setText("Adicionar");
         txtAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,6 +292,13 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tblTelefones);
 
+        btnApagar.setText("Apagar");
+        btnApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApagarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -304,9 +309,11 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtAdicionar))
+                        .addComponent(txtAdicionar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnApagar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,13 +321,29 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAdicionar))
+                    .addComponent(txtAdicionar)
+                    .addComponent(btnApagar))
                 .addGap(42, 42, 42)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(71, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Telefones", jPanel6);
+
+        jPanel7.setBackground(java.awt.Color.white);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 605, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 254, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Produto", jPanel7);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -351,7 +374,7 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(jTabbedPane2)
+                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
@@ -376,10 +399,6 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
 
                        if(this.repositorio.Salvar(fornecedor) ){
                            JOptionPane.showMessageDialog(null, "Fornecedor Salvo com sucesso!");
-                           Cadastros tela = new Cadastros();
-                           this.getParent().add(tela);
-                           tela.show();
-                           dispose();
              
                        }
                        else{
@@ -400,9 +419,17 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
             atualizarTelefones();
     }//GEN-LAST:event_txtAdicionarActionPerformed
 
+    private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
+        // TODO add your handling code here:
+             this.fornecedor.removeTelefone(txtTelefone.getText());
+             txtTelefone.setText("");
+            atualizarTelefones();
+    }//GEN-LAST:event_btnApagarActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnApagar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox<String> cbxEstado;
@@ -420,6 +447,7 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
