@@ -6,9 +6,17 @@
 package br.edu.ifnmg.Mercearia.Presentation.Desktop;
 
 import br.edu.ifnmg.Mercearia.DomainModel.ErroValidacaoException;
+import br.edu.ifnmg.Mercearia.DomainModel.Fornecedor;
 import br.edu.ifnmg.Mercearia.DomainModel.Produto;
+import br.edu.ifnmg.Mercearia.Persistence.FornecedorRepositorio;
 import br.edu.ifnmg.Mercearia.Persistence.ProdutoRepositorio;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,16 +25,31 @@ import javax.swing.JOptionPane;
 public class ProdutoEditar extends javax.swing.JInternalFrame {
     private Produto produto;
     private ProdutoRepositorio repositorio;
-
+    private FornecedorRepositorio forn_repo;
+   
+    
     /**
      * Creates new form ProdutoEditar
      */
-    public ProdutoEditar() {
+    public ProdutoEditar(Produto produto, ProdutoRepositorio rep) throws SQLException, ErroValidacaoException {
         produto = new Produto();
         repositorio = new ProdutoRepositorio();
+        forn_repo = new FornecedorRepositorio();
         initComponents();
+        List<Fornecedor> fornecedor = forn_repo.Buscar(null);
+
     }
-    
+    public ProdutoEditar() throws SQLException, ErroValidacaoException {
+        produto = new Produto();
+        repositorio = new ProdutoRepositorio();
+        forn_repo = new FornecedorRepositorio();
+       
+          initComponents();
+          List<Fornecedor> fornecedores = forn_repo.Buscar(null);
+          ComboBoxModel<Fornecedor> model_fornecedor = new DefaultComboBoxModel<>(new Vector(fornecedores));
+          cbxFornecedores.setModel(model_fornecedor);
+    }
+
     
     public void setProduto(){
         this.produto = produto;
@@ -35,6 +58,10 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
         txtUnivenda.setText(String.valueOf(produto.getUniVenda()));
         txtprCompra.setText(String.valueOf(produto.getPrCompra()));
         txtprVenda.setText(String.valueOf(produto.getPrVenda()));
+        cbxFornecedores.setSelectedItem(produto.getFornecedor());
+        
+
+        
          
     }
     
@@ -45,11 +72,12 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
         this.produto.setPrCompra(Float.parseFloat(txtprCompra.getText()));
         this.produto.setPrVenda(Float.parseFloat(txtprVenda.getText()));
         return this.produto;
+        
   
 }
+     
     
     
-
   
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,9 +100,9 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
         txtUnivenda = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtprVenda = new javax.swing.JTextField();
+        btnSalvar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        cbxFornecedor = new javax.swing.JComboBox<>();
-        btnCadastrar = new javax.swing.JButton();
+        cbxFornecedores = new javax.swing.JComboBox<>();
 
         setTitle("Cadastrar produto");
 
@@ -105,49 +133,19 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Preço de venda:");
 
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
+
         jLabel6.setText("Fornecedor:");
-
-        cbxFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxFornecedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxFornecedorActionPerformed(evt);
-            }
-        });
-
-        btnCadastrar.setText("Cadastrar");
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtprCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtUnicompra, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtprVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUnivenda, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -155,17 +153,40 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbxFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(197, 197, 197)
-                        .addComponent(jLabel7))
+                        .addComponent(jLabel7)))
+                .addGap(0, 83, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(190, 190, 190)
-                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 57, Short.MAX_VALUE))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtprCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUnicompra, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(jLabel3))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtprVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUnivenda, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(221, 221, 221)
+                        .addComponent(btnSalvar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +198,7 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(cbxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -190,9 +211,9 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
                     .addComponent(txtprCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtprVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(56, 56, 56)
-                .addComponent(btnCadastrar)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addGap(73, 73, 73)
+                .addComponent(btnSalvar)
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,17 +234,13 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescricaoActionPerformed
 
-    private void cbxFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFornecedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxFornecedorActionPerformed
-
     private void txtUnicompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnicompraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUnicompraActionPerformed
 
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
-        this.produto = getProduto();
+         this.produto = getProduto();
             
             if(JOptionPane.showConfirmDialog(null, "Deseja salvar os dados?", "Confirmar",
                     JOptionPane.YES_NO_OPTION)==0){
@@ -242,12 +259,13 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
                        }
             }else
                 JOptionPane.showMessageDialog(null, "Operação cancelada!"); 
-    }//GEN-LAST:event_btnCadastrarActionPerformed
+      
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrar;
-    private javax.swing.JComboBox<String> cbxFornecedor;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JComboBox<Fornecedor> cbxFornecedores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
