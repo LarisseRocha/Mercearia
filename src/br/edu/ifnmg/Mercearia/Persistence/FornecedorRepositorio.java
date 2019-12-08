@@ -160,17 +160,33 @@ public class FornecedorRepositorio extends BancoDados {
         return null;
     }
      
-     public List<Fornecedor> Buscar(Fornecedor forn) throws SQLException, ErroValidacaoException{
+     public List<Fornecedor> Buscar(Fornecedor filtro){
          
          try{
-                PreparedStatement sql = this.getConexao()
-                        .prepareStatement("select * from fornecedores");
+             String where = "";
+             if(filtro != null){
+                 if(filtro.getId()!=0)
+                     where+= "id = '"+filtro.getId()+"'";
+                 if(filtro.getRazaoSocial() != null && !filtro.getRazaoSocial().isEmpty())
+                    where += "nome like '%"+filtro.getRazaoSocial() + "%'";
+             }
+             
+                
+            String consulta = "select * from Fornecedores ";
+            if(where.length()>0){
+                consulta+= " where  "+where;
+            }
+             
+             
+             
+             PreparedStatement sql = this.getConexao()
+                        .prepareStatement(consulta);
                 ResultSet resultado = sql.executeQuery();
                 List<Fornecedor> fornecedores = new ArrayList();
 
                 while(resultado.next()){
                     Fornecedor f = new Fornecedor();
-
+                try{
                     f.setId(resultado.getInt("id"));
                     f.setCnpj(resultado.getString("cnpj"));
                     f.setRazaoSocial(resultado.getString("razaoSocial"));
@@ -181,12 +197,16 @@ public class FornecedorRepositorio extends BancoDados {
                     f.setCidade(resultado.getString("cidade"));
                     f.setEstado(Estado.valueOf(resultado.getString("estado")));
                     f.setSituacao(Situacao.valueOf(resultado.getString("situacao")));
-
+                    abrirTelefones(f);
+                }catch(Exception ex){
+                    f = null;
+                }
                     fornecedores.add(f);
 
                 }
 
                return fornecedores;
+             
                
          }catch(SQLException ex){
              System.out.println(ex.getMessage());
@@ -196,3 +216,6 @@ public class FornecedorRepositorio extends BancoDados {
      }
     
 }
+
+
+
