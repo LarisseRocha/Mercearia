@@ -11,12 +11,11 @@ package br.edu.ifnmg.Mercearia.Presentation.Desktop;
  */
 public class Cadastros extends javax.swing.JInternalFrame {
 
-   private ClienteEditar cliente;
     /**
      * Creates new form Cadastros
      */
     public Cadastros() {
-       initComponents();     
+        initComponents();
     }
 
     /**
@@ -29,93 +28,118 @@ public class Cadastros extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnCliente = new javax.swing.JButton();
-        btnFornecedor = new javax.swing.JButton();
-        btnCadProduto = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mnCliente = new javax.swing.JMenuItem();
+        mnFornecedor = new javax.swing.JMenuItem();
+        mnProduto = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
-        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
-        setTitle("Cadastros");
 
         jPanel1.setBackground(java.awt.Color.white);
-
-        btnCliente.setText("Cadastrar cliente");
-        btnCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClienteActionPerformed(evt);
-            }
-        });
-
-        btnFornecedor.setText("Cadastrar fornecedor");
-        btnFornecedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFornecedorActionPerformed(evt);
-            }
-        });
-
-        btnCadProduto.setText("Cadastrar produto");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCadProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFornecedor))
-                .addContainerGap(142, Short.MAX_VALUE))
+            .addGap(0, 421, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(btnCliente)
-                .addGap(38, 38, 38)
-                .addComponent(btnFornecedor)
-                .addGap(33, 33, 33)
-                .addComponent(btnCadProduto)
-                .addContainerGap(75, Short.MAX_VALUE))
+            .addGap(0, 257, Short.MAX_VALUE)
         );
+
+        jMenu1.setBackground(java.awt.Color.white);
+        jMenu1.setText("Cadastros");
+
+        mnCliente.setText("Cliente");
+        mnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnClienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnCliente);
+
+        mnFornecedor.setText("Fornecedor");
+        mnFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnFornecedorActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnFornecedor);
+
+        mnProduto.setText("Produto");
+        mnProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnProdutoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnProduto);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Sistema");
+
+        jMenuItem1.setText("Sair");
+        jMenu2.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
+    private void mnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnClienteActionPerformed
         // TODO add your handling code here:
-       ClienteEditar tela = new ClienteEditar();
-       this.getParent().add(tela);
-       tela.show();
-       dispose();
-       
-       
-    }//GEN-LAST:event_btnClienteActionPerformed
+            ClienteEditar tela = new ClienteEditar();
+            this.getParent().add(tela);
+            tela.show();
+            dispose();
+    }//GEN-LAST:event_mnClienteActionPerformed
 
-    private void btnFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFornecedorActionPerformed
+    private void mnFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnFornecedorActionPerformed
         // TODO add your handling code here:
-        FornecedorEditar tela = new FornecedorEditar();
-        this.getParent().add(tela);
-        tela.show();
-        dispose();
-    }//GEN-LAST:event_btnFornecedorActionPerformed
+            FornecedorEditar tela = new FornecedorEditar();
+            this.getParent().add(tela);
+            tela.show();
+            dispose();
+    }//GEN-LAST:event_mnFornecedorActionPerformed
+
+    private void mnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnProdutoActionPerformed
+        // TODO add your handling code here:
+            ProdutoEditar tela = new ProdutoEditar();
+            //System.out.println("aaaa");
+            this.getParent().add(tela);
+            tela.show();
+            dispose();
+            
+    }//GEN-LAST:event_mnProdutoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadProduto;
-    private javax.swing.JButton btnCliente;
-    private javax.swing.JButton btnFornecedor;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem mnCliente;
+    private javax.swing.JMenuItem mnFornecedor;
+    private javax.swing.JMenuItem mnProduto;
     // End of variables declaration//GEN-END:variables
 }

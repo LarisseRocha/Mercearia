@@ -13,6 +13,8 @@ import br.edu.ifnmg.Mercearia.Persistence.ProdutoRepositorio;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -39,7 +41,7 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
         List<Fornecedor> fornecedor = forn_repo.Buscar(null);
 
     }
-    public ProdutoEditar() throws SQLException, ErroValidacaoException {
+    public ProdutoEditar(){
         produto = new Produto();
         repositorio = new ProdutoRepositorio();
         forn_repo = new FornecedorRepositorio();
@@ -65,12 +67,13 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
          
     }
     
-     public Produto getProduto(){
+     public Produto getProduto()throws ErroValidacaoException {
         this.produto.setDescricao(txtDescricao.getText());
         this.produto.setUniCompra(Integer.parseInt(txtUnicompra.getText()));        
         this.produto.setUniVenda(Integer.parseInt(txtUnivenda.getText()));
         this.produto.setPrCompra(Float.parseFloat(txtprCompra.getText()));
         this.produto.setPrVenda(Float.parseFloat(txtprVenda.getText()));
+        produto.setFornecedor((Fornecedor)cbxFornecedores.getSelectedItem());
         return this.produto;
         
   
@@ -101,8 +104,9 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         txtprVenda = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        lbl = new javax.swing.JLabel();
         cbxFornecedores = new javax.swing.JComboBox<>();
+        btnCancelar = new javax.swing.JButton();
 
         setTitle("Cadastrar produto");
 
@@ -140,7 +144,14 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel6.setText("Fornecedor:");
+        lbl.setText("Fornecedor:");
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -154,7 +165,7 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
+                        .addComponent(lbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbxFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -172,20 +183,19 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtprCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtUnicompra, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addComponent(jLabel3))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtprVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUnivenda, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addComponent(btnSalvar)))
+                            .addComponent(btnCancelar)
+                            .addComponent(jLabel3))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtprVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUnivenda, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -197,7 +207,7 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
+                    .addComponent(lbl)
                     .addComponent(cbxFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -211,8 +221,10 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
                     .addComponent(txtprCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtprVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(73, 73, 73)
-                .addComponent(btnSalvar)
+                .addGap(77, 77, 77)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvar)
+                    .addComponent(btnCancelar))
                 .addContainerGap(176, Short.MAX_VALUE))
         );
 
@@ -239,8 +251,12 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtUnicompraActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
-         this.produto = getProduto();
+        try {
+            // TODO add your handling code here:
+            this.produto = getProduto();
+        } catch (ErroValidacaoException ex) {
+            Logger.getLogger(ProdutoEditar.class.getName()).log(Level.SEVERE, null, ex);
+        }
             
             if(JOptionPane.showConfirmDialog(null, "Deseja salvar os dados?", "Confirmar",
                     JOptionPane.YES_NO_OPTION)==0){
@@ -262,8 +278,21 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
       
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+         if(JOptionPane.showConfirmDialog(null,"Deseja realmente cancelar essa operação?","Confirmar",
+                JOptionPane.YES_NO_OPTION)==0){
+                JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                 Cadastros tela = new Cadastros();
+                 this.getParent().add(tela);
+                 tela.show();
+                 dispose();
+             }
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox<Fornecedor> cbxFornecedores;
     private javax.swing.JLabel jLabel1;
@@ -271,9 +300,9 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbl;
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtUnicompra;
     private javax.swing.JTextField txtUnivenda;

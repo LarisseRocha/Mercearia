@@ -128,6 +128,7 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setClosable(true);
         setMaximizable(true);
         setResizable(true);
@@ -142,6 +143,11 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -324,7 +330,7 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
                     .addComponent(btnApagar))
                 .addGap(42, 42, 42)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Telefones", jPanel6);
@@ -414,6 +420,18 @@ public class FornecedorEditar extends javax.swing.JInternalFrame {
              txtTelefone.setText("");
             atualizarTelefones();
     }//GEN-LAST:event_btnApagarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        if(JOptionPane.showConfirmDialog(null,"Deseja realmente cancelar essa operação?","Confirmar",
+                JOptionPane.YES_NO_OPTION)==0){
+                JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                 Cadastros tela = new Cadastros();
+                 this.getParent().add(tela);
+                 tela.show();
+                 dispose();
+             }
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
    
 
