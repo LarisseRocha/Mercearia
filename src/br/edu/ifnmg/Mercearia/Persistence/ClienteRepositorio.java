@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -172,6 +174,62 @@ public class ClienteRepositorio extends BancoDados {
         }
         return null;
     }
+    
+      public List<Cliente> Buscar(Cliente filtro){
+         
+         try{
+             String where = "";
+             if(filtro != null){
+                 if(filtro.getId()!=0)
+                     where+= "id = '"+filtro.getId()+"'";
+                 if(filtro.getNome() != null && !filtro.getNome().isEmpty())
+                    where += "descricao like '%"+filtro.getNome() + "%'";
+             }
+             
+                
+            String consulta = "select * from Produtos ";
+            if(where.length()>0){
+                consulta+= " where  "+where;
+            }
+             
+             
+             
+             PreparedStatement sql = this.getConexao()
+                        .prepareStatement(consulta);
+                ResultSet resultado = sql.executeQuery();
+                List<Cliente> produtos = new ArrayList();
+
+                while(resultado.next()){
+                    Cliente c = new Cliente();
+                try{
+                    c.setId(resultado.getInt("id"));
+                    c.setNome(resultado.getString("nome"));
+                    c.setCpf(resultado.getString("cpf"));
+                   
+            
+                  
+                }catch(Exception ex){
+                    c = null;
+                }
+                   produtos.add(c);
+
+                }
+
+               return produtos;
+             
+               
+         }catch(SQLException ex){
+             System.out.println(ex.getMessage());
+         }
+             
+        return null; 
+     }
+    
+
+
+    
+
+
     
     
 }
