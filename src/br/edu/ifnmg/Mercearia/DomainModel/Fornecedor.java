@@ -29,7 +29,7 @@ public class Fornecedor {
     private Situacao situacao;
    // private Produto produto;
     
-    Pattern regex_cnpj = Pattern.compile("\\d{2}\\.?\\d{3}\\.?\\d{3}\\/?\\d{4}\\-?\\d{2}");
+    private Pattern regex_cnpj = Pattern.compile("\\d{2}\\.?\\d{3}\\.?\\d{3}\\/?\\d{4}\\-?\\d{2}");
 
     
       public Fornecedor() {
@@ -52,14 +52,14 @@ public class Fornecedor {
         this.cnpj = cnpj;
         this.razaoSocial = razaoSocial;
         this.email = email;
-        this.telefones = telefones;
+        this.telefones = new ArrayList<>();
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = Estado.AC;
         this.situacao = Situacao.ATIVO;
-       // this.produto = produto;
+       //this.produto = produto;
     }
  
 
@@ -80,6 +80,7 @@ public class Fornecedor {
         else
             throw new ErroValidacaoException("CNPJ Inválido!");
     }
+     
     
     
    public int getId() {
@@ -88,7 +89,7 @@ public class Fornecedor {
     }
 
     public void setId(int aInt) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       id = aInt;
     }
     public List<String> getTelefones() {
         return telefones;
@@ -189,19 +190,19 @@ public class Fornecedor {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 73 * hash + this.id;
-        hash = 73 * hash + Objects.hashCode(this.cnpj);
-        hash = 73 * hash + Objects.hashCode(this.razaoSocial);
-        hash = 73 * hash + Objects.hashCode(this.email);
-        hash = 73 * hash + Objects.hashCode(this.telefones);
-        hash = 73 * hash + Objects.hashCode(this.rua);
-        hash = 73 * hash + Objects.hashCode(this.numero);
-        hash = 73 * hash + Objects.hashCode(this.bairro);
-        hash = 73 * hash + Objects.hashCode(this.cidade);
-        hash = 73 * hash + Objects.hashCode(this.estado);
-        hash = 73 * hash + Objects.hashCode(this.situacao);
-        //hash = 73 * hash + Objects.hashCode(this.produto);
+        int hash = 7;
+        hash = 79 * hash + this.id;
+        hash = 79 * hash + Objects.hashCode(this.cnpj);
+        hash = 79 * hash + Objects.hashCode(this.razaoSocial);
+        hash = 79 * hash + Objects.hashCode(this.email);
+        hash = 79 * hash + Objects.hashCode(this.telefones);
+        hash = 79 * hash + Objects.hashCode(this.rua);
+        hash = 79 * hash + Objects.hashCode(this.numero);
+        hash = 79 * hash + Objects.hashCode(this.bairro);
+        hash = 79 * hash + Objects.hashCode(this.cidade);
+        hash = 79 * hash + Objects.hashCode(this.estado);
+        hash = 79 * hash + Objects.hashCode(this.situacao);
+        hash = 79 * hash + Objects.hashCode(this.regex_cnpj);
         return hash;
     }
 
@@ -250,19 +251,25 @@ public class Fornecedor {
         if (this.situacao != other.situacao) {
             return false;
         }
-       /* if (!Objects.equals(this.produto, other.produto)) {
+        if (!Objects.equals(this.regex_cnpj, other.regex_cnpj)) {
             return false;
-        }*/
+        }
         return true;
     }
 
+   /* @Override
+    public String toString() {
+        return "Fornecedor{" + "id=" + id + ", cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", email=" + email + ", telefones=" + telefones + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", situacao=" + situacao + ", regex_cnpj=" + regex_cnpj + '}';
+    }*/
+
     @Override
     public String toString() {
-        return "Fornecedor{" + "id=" + id + ", cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", email=" + email + ", telefones=" + telefones + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", situacao=" + situacao + '}';
+        return razaoSocial;
     }
+    
 
+    
 
-  
     public void setEstado(String mg) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
