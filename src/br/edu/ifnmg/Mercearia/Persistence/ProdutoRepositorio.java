@@ -9,6 +9,8 @@ import br.edu.ifnmg.Mercearia.DomainModel.Produto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -24,12 +26,14 @@ public class ProdutoRepositorio extends BancoDados {
         try{
             if(obj.getId() == 0){
                 PreparedStatement sql = this.getConexao()
-                        .prepareStatement("insert into Produtos(descricao, uniCompra, uniVenda, prCompra, prVenda) values(?,?,?,?,?)");
+                        .prepareStatement("insert into Produtos(descricao, uniCompra, uniVenda, prCompra, prVenda, fornecedorFK) values(?,?,?,?,?,?)");
                 sql.setString(1, obj.getDescricao());
                 sql.setInt(2, (int) obj.getUniCompra());
                 sql.setInt(3, (int) obj.getUniVenda());
                 sql.setFloat(4, obj.getPrCompra());
                 sql.setFloat(5, obj.getPrVenda());
+                sql.setInt(6, obj.getFornecedor().getId() );
+                System.out.println(obj.getFornecedor().getId());
                 
                 
 
@@ -42,9 +46,11 @@ public class ProdutoRepositorio extends BancoDados {
                         .prepareStatement("update set Produtos descricao =?, uniCompr=?, uniVenda=?, prCompra=?, prVenda=?");
                 sql.setString(1, obj.getDescricao());
                 sql.setInt(2, (int) obj.getUniCompra());
-                sql.setInt(4, (int) obj.getUniVenda());
-                sql.setFloat(2, obj.getPrCompra());
-                sql.setFloat(3, obj.getPrVenda());
+                sql.setInt(3, (int) obj.getUniVenda());
+                sql.setFloat(4, obj.getPrCompra());
+                sql.setFloat(5, obj.getPrVenda());
+                sql.setInt(6, obj.getFornecedor().getId());
+                
                 
                 if(sql.executeUpdate()>0){
                     return true;
@@ -75,6 +81,7 @@ public class ProdutoRepositorio extends BancoDados {
             produto.setPrCompra(resultado.getFloat("prCompra"));
             produto.setPrVenda(resultado.getFloat("prVenda"));
             
+            
              
             return produto;
             
@@ -84,4 +91,59 @@ public class ProdutoRepositorio extends BancoDados {
         return null;
     }
     
+     public List<Produto> Buscar(Produto filtro){
+         
+         try{
+             String where = "";
+             if(filtro != null){
+                 if(filtro.getId()!=0)
+                     where+= "id = '"+filtro.getId()+"'";
+                 if(filtro.getDescricao() != null && !filtro.getDescricao().isEmpty())
+                    where += "descricao like '%"+filtro.getDescricao() + "%'";
+             }
+             
+                
+            String consulta = "select * from Produtos ";
+            if(where.length()>0){
+                consulta+= " where  "+where;
+            }
+             
+             
+             
+             PreparedStatement sql = this.getConexao()
+                        .prepareStatement(consulta);
+                ResultSet resultado = sql.executeQuery();
+                List<Produto> produtos = new ArrayList();
+
+                while(resultado.next()){
+                    Produto p = new Produto();
+                try{
+                    p.setId(resultado.getInt("id"));
+                    p.setDescricao(resultado.getString("descricao"));
+                    p.setUniCompra(resultado.getInt("uniCompra"));
+                    p.setUniVenda(resultado.getInt("uniVenda"));
+                    p.setPrCompra(resultado.getFloat("prCompra"));
+                    p.setPrVenda(resultado.getFloat("prVenda"));
+            
+                  
+                }catch(Exception ex){
+                    p = null;
+                }
+                   produtos.add(p);
+
+                }
+
+               return produtos;
+             
+               
+         }catch(SQLException ex){
+             System.out.println(ex.getMessage());
+         }
+             
+        return null; 
+     }
+    
 }
+
+    
+
