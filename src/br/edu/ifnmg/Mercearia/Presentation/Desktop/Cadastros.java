@@ -28,28 +28,55 @@ public class Cadastros extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnCliente = new javax.swing.JMenuItem();
         mnFornecedor = new javax.swing.JMenuItem();
         mnProduto = new javax.swing.JMenuItem();
+        mnRegistrarCompra = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        mnBuscarProduto = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        mnBuscarCliente = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        mnSair = new javax.swing.JMenuItem();
 
         setClosable(true);
 
         jPanel1.setBackground(java.awt.Color.white);
 
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Larisse\\Desktop\\POO\\prop100.jpg")); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(153, 153, 255));
+        jLabel2.setText("Super ofertas");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 421, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(192, 192, 192)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel2))
+                    .addComponent(jLabel1))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 257, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
+
+        jMenuBar1.setBackground(new java.awt.Color(204, 204, 255));
 
         jMenu1.setBackground(java.awt.Color.white);
         jMenu1.setText("Cadastros");
@@ -78,12 +105,50 @@ public class Cadastros extends javax.swing.JInternalFrame {
         });
         jMenu1.add(mnProduto);
 
+        mnRegistrarCompra.setBackground(new java.awt.Color(204, 204, 255));
+        mnRegistrarCompra.setText("Registrar compra");
+        mnRegistrarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnRegistrarCompraActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnRegistrarCompra);
+
         jMenuBar1.add(jMenu1);
+
+        jMenu3.setText("Produto");
+
+        mnBuscarProduto.setText("Buscar produto");
+        mnBuscarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnBuscarProdutoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnBuscarProduto);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Cliente");
+
+        mnBuscarCliente.setText("Buscar cliente");
+        mnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnBuscarClienteActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnBuscarCliente);
+
+        jMenuBar1.add(jMenu4);
 
         jMenu2.setText("Sistema");
 
-        jMenuItem1.setText("Sair");
-        jMenu2.add(jMenuItem1);
+        mnSair.setText("Sair");
+        mnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnSairActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mnSair);
 
         jMenuBar1.add(jMenu2);
 
@@ -131,15 +196,56 @@ public class Cadastros extends javax.swing.JInternalFrame {
             
     }//GEN-LAST:event_mnProdutoActionPerformed
 
+    private void mnRegistrarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnRegistrarCompraActionPerformed
+        // TODO add your handling code here:
+            CompraEditar tela = new CompraEditar();
+            this.getParent().add(tela);
+            tela.show();
+            dispose();
+    }//GEN-LAST:event_mnRegistrarCompraActionPerformed
+
+    private void mnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnSairActionPerformed
+        // TODO add your handling code here:
+        TelaPrincipal tela = new TelaPrincipal();
+        this.getParent().add(tela);
+        tela.show();
+        dispose();
+    }//GEN-LAST:event_mnSairActionPerformed
+
+    private void mnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnBuscarProdutoActionPerformed
+        // TODO add your handling code here:
+        ProdutoBuscar  tela = new ProdutoBuscar();
+        this.getParent().add(tela);
+        tela.show();
+        dispose();
+        
+    }//GEN-LAST:event_mnBuscarProdutoActionPerformed
+
+    private void mnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnBuscarClienteActionPerformed
+        // TODO add your handling code here:
+        ClienteBuscar  tela = new ClienteBuscar();
+        this.getParent().add(tela);
+        tela.show();
+        dispose();
+        
+    }//GEN-LAST:event_mnBuscarClienteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem mnBuscarCliente;
+    private javax.swing.JMenuItem mnBuscarProduto;
     private javax.swing.JMenuItem mnCliente;
     private javax.swing.JMenuItem mnFornecedor;
     private javax.swing.JMenuItem mnProduto;
+    private javax.swing.JMenuItem mnRegistrarCompra;
+    private javax.swing.JMenuItem mnSair;
     // End of variables declaration//GEN-END:variables
 }
