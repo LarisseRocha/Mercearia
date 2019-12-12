@@ -5,6 +5,7 @@
  */
 package br.edu.ifnmg.Mercearia.DomainModel;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -139,9 +140,28 @@ public class Produto {
     }
 
    
-    @Override
+   /* @Override
     public String toString() {
         return "Produto{" + "id=" + id + ", descricao=" + descricao + ", uniCompra=" + uniCompra + ", uniVenda=" + uniVenda + ", prCompra=" + prCompra + ", prVenda=" + prVenda + ", fornecedor=" + fornecedor + '}';
+    }*/
+    
+    @Override
+    public String toString() {
+        return this.descricao;
+    }
+
+    public void addFornecedor(Fornecedor fornecedor) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<Fornecedor> getFornecedores() {
+        return null;
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<Produto> Buscar(Object object) {
+        return null;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     
