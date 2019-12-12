@@ -25,10 +25,11 @@ public class CompraRepositorio extends BancoDados {
        try{
           if(obj.getId() == 0){
             PreparedStatement sql  = this.getConexao()
-                  .prepareStatement("insert into Compras(valorTotal, dtVenda, operador, Fornecedor) values(?,?,?,?)");
+                  .prepareStatement("insert into Compras(valorTotal, dtVenda, operador, Fornecedor, quantidade) values(?,?,?,?,?)");
             sql.setFloat(1, obj.getValorTotal());
             sql.setDate(2, (Date) obj.getDtVenda());
             sql.setInt(3, obj.getFornecedor().getId());
+            sql.setInt(4, obj.getQuantidade());
             
             
             if(sql.executeUpdate()>0){
@@ -37,10 +38,11 @@ public class CompraRepositorio extends BancoDados {
                 return false;
            }else{
                 PreparedStatement sql = this.getConexao()
-                    .prepareStatement("update Compras valorTotal =?, dtVenda=?, operador=?, Fornecedor=? where id = ?");
+                    .prepareStatement("update Compras valorTotal =?, dtVenda=?, operador=?, Fornecedor=? , quantidade=?, where id = ?");
               sql.setFloat(1, obj.getValorTotal());
               sql.setDate(2, (Date) obj.getDtVenda());
               sql.setInt(3, obj.getFornecedor().getId());
+              sql.setInt(4, obj.getQuantidade());
              
 
               if(sql.executeUpdate()>0){
