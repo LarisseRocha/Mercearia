@@ -35,7 +35,7 @@ public class FornecedorRepositorio extends BancoDados {
                 .prepareStatement("insert into Fornecedores(cnpj, razaoSocial, email, rua, numero, bairro, cidade, estado, situacao) values(?,?,?,?,?,?,?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);
             
-            sql.setString(1, obj.getCnpj().replace(".", " ").replace("/", " ").replace("-", " "));
+            sql.setString(1, obj.getCnpj().replace(".", "").replace("/", "").replace("-", ""));
             sql.setString(2, obj.getRazaoSocial());
             sql.setString(3, obj.getEmail());
             sql.setString(4, obj.getRua());
@@ -55,7 +55,7 @@ public class FornecedorRepositorio extends BancoDados {
                PreparedStatement sql = this.getConexao()
                        .prepareStatement("update Fornecedores set cnpj = ?, razaoSocial = ?, email = ?, rua=?, numero =?, bairro=?, cidade=?, estado=?, situacao = ? where id = ?");
                
-               sql.setString(1, obj.getCnpj().replace(".", " ").replace("/", " ").replace("-", " "));
+               sql.setString(1, obj.getCnpj().replace(".", "").replace("/", "").replace("-", ""));
                sql.setString(2, obj.getRazaoSocial());
                sql.setString(3, obj.getEmail());
                sql.setString(4, obj.getRua());
@@ -81,9 +81,9 @@ public class FornecedorRepositorio extends BancoDados {
             PreparedStatement sql = this.getConexao()
                     .prepareStatement("delete from FornecedoresTelefone where fornecedor_id = ?");
             
-            sql.setInt(1, fornecedor.getId());
+           sql.setInt(1, fornecedor.getId());
             
-           sql.execute();
+           sql.executeUpdate();
            
            PreparedStatement sql2 = this.getConexao()
                    .prepareStatement("insert into FornecedoresTelefone(fornecedor_id, telefone) VALUES (?, ?) ");
@@ -94,7 +94,7 @@ public class FornecedorRepositorio extends BancoDados {
             for(String telefone : fornecedor.getTelefones()){
                 sql2.setInt(1, fornecedor.getId());
                 sql2.setString(2, telefone);
-                sql2.execute();
+                sql2.executeUpdate();
                
             }
             
@@ -168,11 +168,11 @@ public class FornecedorRepositorio extends BancoDados {
                  if(filtro.getId()!=0)
                      where+= "id = '"+filtro.getId()+"'";
                  if(filtro.getRazaoSocial() != null && !filtro.getRazaoSocial().isEmpty())
-                    where += "nome like '%"+filtro.getRazaoSocial() + "%'";
+                    where += "razaoSocial like '%"+filtro.getRazaoSocial() + "%'";
              }
              
                 
-            String consulta = "select * from Fornecedores ";
+            String consulta = "select * from Fornecedores  ";
             if(where.length()>0){
                 consulta+= " where  "+where;
             }
@@ -187,8 +187,21 @@ public class FornecedorRepositorio extends BancoDados {
                 while(resultado.next()){
                     Fornecedor f = new Fornecedor();
                 try{
+                    String cnpj = resultado.getString("cnpj"); 
+                    String cnpj2 = cnpj.substring(0,2)+".";
+                    cnpj2+= cnpj.substring(2,5)+".";
+                    cnpj2+= cnpj.substring(5,8)+"/";
+                    cnpj2+= cnpj.substring(8,12)+"-";
+                    cnpj2+= cnpj.substring(12,14);
+                    
+                    /*(0, 2)+"."+
+               cnpj.substring(2, 5)+"."+
+               cnpj.substring(5, 8)+"/"+
+               cnpj.substring(8, 12)+"-"+
+               cnpj.substring(12, 14);*/
+                   // 00.000.000/0000-00
                     f.setId(resultado.getInt("id"));
-                    f.setCnpj(resultado.getString("cnpj"));
+                    f.setCnpj(cnpj2);
                     f.setRazaoSocial(resultado.getString("razaoSocial"));
                     f.setEmail(resultado.getString("email"));
                     f.setRua(resultado.getString("rua"));
@@ -198,8 +211,10 @@ public class FornecedorRepositorio extends BancoDados {
                     f.setEstado(Estado.valueOf(resultado.getString("estado")));
                     f.setSituacao(Situacao.valueOf(resultado.getString("situacao")));
                     abrirTelefones(f);
+                    System.out.println(f.getId());
+                    
                 }catch(Exception ex){
-                    f = null;
+                    System.out.println("a"); f = null;
                 }
                     fornecedores.add(f);
 
