@@ -36,6 +36,7 @@ public class ClienteRepositorio extends BancoDados {
             PreparedStatement sql =  this.getConexao()
                 .prepareStatement("insert into Clientes(nome, cpf, email, rua, numero, bairro, cidade, estado, situacao) values(?,?,?,?,?,?,?,?,?)",
                         Statement.RETURN_GENERATED_KEYS);
+            //recupera as chaves autoincrement do bd
             
             sql.setString(1, obj.getNome());
             sql.setString(2, obj.getCpf().replace(".", " ").replace("/","").replace("-", " "));
