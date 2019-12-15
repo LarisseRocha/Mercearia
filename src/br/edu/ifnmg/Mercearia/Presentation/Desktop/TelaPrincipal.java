@@ -32,7 +32,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         mnLogin = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(java.awt.Color.white);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jMenu1.setBackground(java.awt.Color.blue);
         jMenu1.setText("Sistema");

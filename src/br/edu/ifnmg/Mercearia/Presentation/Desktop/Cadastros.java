@@ -35,11 +35,10 @@ public class Cadastros extends javax.swing.JInternalFrame {
         mnCliente = new javax.swing.JMenuItem();
         mnFornecedor = new javax.swing.JMenuItem();
         mnProduto = new javax.swing.JMenuItem();
-        mnRegistrarCompra = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         mnBuscarProduto = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        mnBuscarCliente = new javax.swing.JMenuItem();
+        mnRegistros = new javax.swing.JMenu();
+        mnRegistrarCompra = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mnSair = new javax.swing.JMenuItem();
 
@@ -73,7 +72,7 @@ public class Cadastros extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(204, 204, 255));
@@ -105,20 +104,11 @@ public class Cadastros extends javax.swing.JInternalFrame {
         });
         jMenu1.add(mnProduto);
 
-        mnRegistrarCompra.setBackground(new java.awt.Color(204, 204, 255));
-        mnRegistrarCompra.setText("Registrar compra");
-        mnRegistrarCompra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnRegistrarCompraActionPerformed(evt);
-            }
-        });
-        jMenu1.add(mnRegistrarCompra);
-
         jMenuBar1.add(jMenu1);
 
         jMenu3.setText("Produto");
 
-        mnBuscarProduto.setText("Buscar produto");
+        mnBuscarProduto.setText("Buscar");
         mnBuscarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnBuscarProdutoActionPerformed(evt);
@@ -128,17 +118,18 @@ public class Cadastros extends javax.swing.JInternalFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setText("Cliente");
+        mnRegistros.setText("Registros");
 
-        mnBuscarCliente.setText("Buscar cliente");
-        mnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+        mnRegistrarCompra.setBackground(new java.awt.Color(204, 204, 255));
+        mnRegistrarCompra.setText("Registrar compra");
+        mnRegistrarCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnBuscarClienteActionPerformed(evt);
+                mnRegistrarCompraActionPerformed(evt);
             }
         });
-        jMenu4.add(mnBuscarCliente);
+        mnRegistros.add(mnRegistrarCompra);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(mnRegistros);
 
         jMenu2.setText("Sistema");
 
@@ -172,45 +163,44 @@ public class Cadastros extends javax.swing.JInternalFrame {
 
     private void mnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnClienteActionPerformed
         // TODO add your handling code here:
-            ClienteEditar tela = new ClienteEditar();
-            this.getParent().add(tela);
-            tela.show();
-            dispose();
+        ClienteEditar tela = new ClienteEditar();
+        this.getParent().add(tela);
+        tela.show();
+        dispose();
     }//GEN-LAST:event_mnClienteActionPerformed
 
     private void mnFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnFornecedorActionPerformed
         // TODO add your handling code here:
-            FornecedorEditar tela = new FornecedorEditar();
-            this.getParent().add(tela);
-            tela.show();
-            dispose();
+        FornecedorEditar tela = new FornecedorEditar();
+        this.getParent().add(tela);
+        tela.show();
+        dispose();
     }//GEN-LAST:event_mnFornecedorActionPerformed
 
     private void mnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnProdutoActionPerformed
         // TODO add your handling code here:
-            ProdutoEditar tela = new ProdutoEditar();
-            //System.out.println("aaaa");
-            this.getParent().add(tela);
-            tela.show();
-            dispose();
-            
+        ProdutoEditar tela = new ProdutoEditar();
+        //System.out.println("aaaa");
+        this.getParent().add(tela);
+        tela.show();
+        dispose();
     }//GEN-LAST:event_mnProdutoActionPerformed
-
-    private void mnRegistrarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnRegistrarCompraActionPerformed
-        // TODO add your handling code here:
-            CompraEditar tela = new CompraEditar();
-            this.getParent().add(tela);
-            tela.show();
-            dispose();
-    }//GEN-LAST:event_mnRegistrarCompraActionPerformed
 
     private void mnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnSairActionPerformed
         // TODO add your handling code here:
-        TelaPrincipal tela = new TelaPrincipal();
+        LoginUsuario tela = new LoginUsuario();
         this.getParent().add(tela);
         tela.show();
         dispose();
     }//GEN-LAST:event_mnSairActionPerformed
+
+    private void mnRegistrarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnRegistrarCompraActionPerformed
+        // TODO add your handling code here:
+        CompraRegistrar tela = new CompraRegistrar();
+        this.getParent().add(tela);
+        tela.show();
+        dispose();
+    }//GEN-LAST:event_mnRegistrarCompraActionPerformed
 
     private void mnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnBuscarProdutoActionPerformed
         // TODO add your handling code here:
@@ -218,17 +208,7 @@ public class Cadastros extends javax.swing.JInternalFrame {
         this.getParent().add(tela);
         tela.show();
         dispose();
-        
     }//GEN-LAST:event_mnBuscarProdutoActionPerformed
-
-    private void mnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnBuscarClienteActionPerformed
-        // TODO add your handling code here:
-        ClienteBuscar  tela = new ClienteBuscar();
-        this.getParent().add(tela);
-        tela.show();
-        dispose();
-        
-    }//GEN-LAST:event_mnBuscarClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -237,15 +217,14 @@ public class Cadastros extends javax.swing.JInternalFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JMenuItem mnBuscarCliente;
     private javax.swing.JMenuItem mnBuscarProduto;
     private javax.swing.JMenuItem mnCliente;
     private javax.swing.JMenuItem mnFornecedor;
     private javax.swing.JMenuItem mnProduto;
     private javax.swing.JMenuItem mnRegistrarCompra;
+    private javax.swing.JMenu mnRegistros;
     private javax.swing.JMenuItem mnSair;
     // End of variables declaration//GEN-END:variables
 }

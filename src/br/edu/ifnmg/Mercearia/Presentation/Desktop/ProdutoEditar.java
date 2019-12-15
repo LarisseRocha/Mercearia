@@ -44,9 +44,7 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
          ComboBoxModel<Fornecedor> model_fornecedores 
                 = new DefaultComboBoxModel<>(new Vector(fornecedores));
           cbxFornecedores.setModel(model_fornecedores);
-        setProduto(produto);
-        
-         
+        setProduto(produto);    
       
     }
     public ProdutoEditar(){
@@ -66,7 +64,7 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
           System.out.println( cbxFornecedores.getModel().getSize());
           
           setProduto(produto);
-//          System.out.println(fornecedores.get(0).getRazaoSocial());
+//          
                    
     }
 
@@ -137,7 +135,10 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
         mnCliente = new javax.swing.JMenuItem();
         mnFornecedor = new javax.swing.JMenuItem();
         mnProduto = new javax.swing.JMenuItem();
+        mnRegistros = new javax.swing.JMenu();
         mnRegistrarCompra = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        mnBuscarProduto = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mnSair = new javax.swing.JMenuItem();
 
@@ -193,19 +194,16 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbxFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cbxFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel7)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(126, 126, 126))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -306,6 +304,10 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
         });
         jMenu1.add(mnProduto);
 
+        jMenuBar1.add(jMenu1);
+
+        mnRegistros.setText("Registros");
+
         mnRegistrarCompra.setBackground(new java.awt.Color(204, 204, 255));
         mnRegistrarCompra.setText("Registrar compra");
         mnRegistrarCompra.addActionListener(new java.awt.event.ActionListener() {
@@ -313,9 +315,21 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
                 mnRegistrarCompraActionPerformed(evt);
             }
         });
-        jMenu1.add(mnRegistrarCompra);
+        mnRegistros.add(mnRegistrarCompra);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mnRegistros);
+
+        jMenu3.setText("Produto");
+
+        mnBuscarProduto.setText("Buscar");
+        mnBuscarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnBuscarProdutoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnBuscarProduto);
+
+        jMenuBar1.add(jMenu3);
 
         jMenu2.setText("Sistema");
 
@@ -355,7 +369,7 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(btnCancelar))
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addGap(0, 24, Short.MAX_VALUE))
         );
 
         pack();
@@ -373,9 +387,7 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
         try {
             // TODO add your handling code here:
              Produto produto;
-             produto = getProduto();
-       
-            
+             produto = getProduto();        
             if(JOptionPane.showConfirmDialog(null, "Deseja salvar os dados?", "Confirmar",
                     JOptionPane.YES_NO_OPTION)==0){
 
@@ -385,8 +397,7 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
                             Cadastros tela = new Cadastros();
                             this.getParent().add(tela);
                             tela.show();
-                            dispose();
-             
+                            dispose();          
                        }
                        else{
                            JOptionPane.showMessageDialog(null, "Erro ao salvar os dados, contate o administrador do sistema!");
@@ -411,6 +422,10 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
              }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void cbxFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFornecedoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxFornecedoresActionPerformed
+
     private void mnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnClienteActionPerformed
         // TODO add your handling code here:
         ClienteEditar tela = new ClienteEditar();
@@ -434,28 +449,31 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
         this.getParent().add(tela);
         tela.show();
         dispose();
-
     }//GEN-LAST:event_mnProdutoActionPerformed
+
+    private void mnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnSairActionPerformed
+        // TODO add your handling code here:
+        LoginUsuario tela = new LoginUsuario();
+        this.getParent().add(tela);
+        tela.show();
+        dispose();
+    }//GEN-LAST:event_mnSairActionPerformed
 
     private void mnRegistrarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnRegistrarCompraActionPerformed
         // TODO add your handling code here:
-        CompraEditar tela = new CompraEditar();
+        CompraRegistrar tela = new CompraRegistrar();
         this.getParent().add(tela);
         tela.show();
         dispose();
     }//GEN-LAST:event_mnRegistrarCompraActionPerformed
 
-    private void mnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnSairActionPerformed
+    private void mnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnBuscarProdutoActionPerformed
         // TODO add your handling code here:
-                LoginUsuario tela = new LoginUsuario();
-                this.getParent().add(tela);
-                tela.show();
-                dispose();
-    }//GEN-LAST:event_mnSairActionPerformed
-
-    private void cbxFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFornecedoresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxFornecedoresActionPerformed
+        ProdutoBuscar  tela = new ProdutoBuscar();
+        this.getParent().add(tela);
+        tela.show();
+        dispose();
+    }//GEN-LAST:event_mnBuscarProdutoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -472,13 +490,16 @@ public class ProdutoEditar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JMenuItem mnBuscarProduto;
     private javax.swing.JMenuItem mnCliente;
     private javax.swing.JMenuItem mnFornecedor;
     private javax.swing.JMenuItem mnProduto;
     private javax.swing.JMenuItem mnRegistrarCompra;
+    private javax.swing.JMenu mnRegistros;
     private javax.swing.JMenuItem mnSair;
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtUnicompra;

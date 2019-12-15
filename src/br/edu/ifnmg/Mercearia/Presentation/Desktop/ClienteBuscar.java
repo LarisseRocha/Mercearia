@@ -5,10 +5,8 @@
  */
 package br.edu.ifnmg.Mercearia.Presentation.Desktop;
 
-import br.edu.ifnmg.Mercearia.DomainModel.ErroValidacaoException;
-import br.edu.ifnmg.Mercearia.DomainModel.Produto;
-import br.edu.ifnmg.Mercearia.Persistence.ProdutoRepositorio;
-import java.sql.SQLException;
+import br.edu.ifnmg.Mercearia.DomainModel.Cliente;
+import br.edu.ifnmg.Mercearia.Persistence.ClienteRepositorio;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
@@ -17,20 +15,22 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Larisse
  */
-public class ProdutoBuscar extends javax.swing.JInternalFrame {
+public class ClienteBuscar extends javax.swing.JInternalFrame {
 
+    private Cliente filtro;
+    private ClienteRepositorio repositorio;
     /**
-     * Creates new form ProdutoBuscar
+     * Creates new form ClienteBuscar
      */
-     ProdutoRepositorio repositorio;
-     Produto filtro;
-    public ProdutoBuscar() {
+    
+    public ClienteBuscar() {
         initComponents();
-        repositorio = new ProdutoRepositorio();
-        filtro = new Produto();
-       
+        filtro = new Cliente();
+        repositorio = new ClienteRepositorio();
+         
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,34 +40,37 @@ public class ProdutoBuscar extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtDescricao = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtNome = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabResultado = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnCliente = new javax.swing.JMenuItem();
         mnFornecedor = new javax.swing.JMenuItem();
         mnProduto = new javax.swing.JMenuItem();
-        mnRegistros = new javax.swing.JMenu();
         mnRegistrarCompra = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         mnBuscarProduto = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        mnBuscarCliente = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mnSair = new javax.swing.JMenuItem();
-
-        jLabel2.setText("jLabel2");
 
         setClosable(true);
 
         jPanel1.setBackground(java.awt.Color.white);
 
-        jLabel1.setText("Produto:");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Buscar cliente");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Larisse\\Desktop\\POO\\prop50.jpg")); // NOI18N
+
+        jLabel3.setText("Nome:");
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -81,14 +84,14 @@ public class ProdutoBuscar extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "Descricao", "Unidade compra", "Valor"
+                "ID", "Nome", "CPF"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, true
+                false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -106,53 +109,49 @@ public class ProdutoBuscar extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tabResultado);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Buscar Produto");
-
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Larisse\\Desktop\\POO\\prop50.jpg")); // NOI18N
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBuscar)
-                .addContainerGap(85, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addGap(191, 191, 191)
+                        .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(213, 213, 213)
+                        .addGap(106, 106, 106)
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5)))
-                .addGap(75, 75, 75))
+                        .addGap(18, 18, 18)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscar)))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel1)
+                        .addGap(43, 43, 43))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel5)))
-                .addGap(41, 41, 41)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+                .addGap(58, 58, 58))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(204, 204, 255));
@@ -184,10 +183,6 @@ public class ProdutoBuscar extends javax.swing.JInternalFrame {
         });
         jMenu1.add(mnProduto);
 
-        jMenuBar1.add(jMenu1);
-
-        mnRegistros.setText("Registros");
-
         mnRegistrarCompra.setBackground(new java.awt.Color(204, 204, 255));
         mnRegistrarCompra.setText("Registrar compra");
         mnRegistrarCompra.addActionListener(new java.awt.event.ActionListener() {
@@ -195,9 +190,9 @@ public class ProdutoBuscar extends javax.swing.JInternalFrame {
                 mnRegistrarCompraActionPerformed(evt);
             }
         });
-        mnRegistros.add(mnRegistrarCompra);
+        jMenu1.add(mnRegistrarCompra);
 
-        jMenuBar1.add(mnRegistros);
+        jMenuBar1.add(jMenu1);
 
         jMenu3.setText("Produto");
 
@@ -210,6 +205,18 @@ public class ProdutoBuscar extends javax.swing.JInternalFrame {
         jMenu3.add(mnBuscarProduto);
 
         jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Cliente");
+
+        mnBuscarCliente.setText("Buscar cliente");
+        mnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnBuscarClienteActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnBuscarCliente);
+
+        jMenuBar1.add(jMenu4);
 
         jMenu2.setText("Sistema");
 
@@ -233,51 +240,21 @@ public class ProdutoBuscar extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TabelaProdutos(List<Produto> produtos){
-        DefaultTableModel modelo = new DefaultTableModel();
-        
-        modelo.addColumn("ID");
-        modelo.addColumn("descricao");
-        modelo.addColumn("uniCompra");
-        modelo.addColumn("valor");
-       
-        
-        
-        
-        for(Produto p : produtos){
-            Vector linha = new Vector();
-            linha.add(p.getId());
-            linha.add(p.getDescricao());
-            linha.add(p.getUniCompra());
-            linha.add(p.getPrCompra());
-            
-            modelo.addRow(linha);
-        }
-
-        tabResultado.setModel(modelo);
-    }
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-         // TODO add your handling code here:
-         filtro = new Produto();
-         if(txtDescricao.getText().length()>0)
-             filtro.setDescricao(txtDescricao.getText());
-        List<Produto> produto = repositorio.Buscar(filtro);
-        TabelaProdutos(produto);
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
     private void tabResultadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabResultadoMouseClicked
         // TODO add your handling code here:
-        
+
         int linha = this.tabResultado.getSelectedRow();
-        int id = Integer.parseInt(this.tabResultado.getValueAt(linha, 2).toString() );
-        Produto produto =  repositorio.Abrir(id);
-        
+        int id = Integer.parseInt(this.tabResultado.getValueAt(linha, 1).toString() );
+        Cliente cliente =  repositorio.Abrir(id);
+
     }//GEN-LAST:event_tabResultadoMouseClicked
 
     private void mnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnClienteActionPerformed
@@ -303,15 +280,8 @@ public class ProdutoBuscar extends javax.swing.JInternalFrame {
         this.getParent().add(tela);
         tela.show();
         dispose();
-    }//GEN-LAST:event_mnProdutoActionPerformed
 
-    private void mnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnSairActionPerformed
-        // TODO add your handling code here:
-        LoginUsuario tela = new LoginUsuario();
-        this.getParent().add(tela);
-        tela.show();
-        dispose();
-    }//GEN-LAST:event_mnSairActionPerformed
+    }//GEN-LAST:event_mnProdutoActionPerformed
 
     private void mnRegistrarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnRegistrarCompraActionPerformed
         // TODO add your handling code here:
@@ -327,29 +297,75 @@ public class ProdutoBuscar extends javax.swing.JInternalFrame {
         this.getParent().add(tela);
         tela.show();
         dispose();
+
     }//GEN-LAST:event_mnBuscarProdutoActionPerformed
 
+    private void mnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnBuscarClienteActionPerformed
+        // TODO add your handling code here:
+        ClienteBuscar  tela = new ClienteBuscar();
+        this.getParent().add(tela);
+        tela.show();
+        dispose();
+
+    }//GEN-LAST:event_mnBuscarClienteActionPerformed
+
+    private void mnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnSairActionPerformed
+        // TODO add your handling code here:
+        TelaPrincipal tela = new TelaPrincipal();
+        this.getParent().add(tela);
+        tela.show();
+        dispose();
+    }//GEN-LAST:event_mnSairActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        filtro = new Cliente();
+         if(txtNome.getText().length()>0)
+             filtro.setNome(txtNome.getText());
+        List<Cliente> cliente = repositorio.Buscar(filtro);
+        TabelaClientes(cliente);
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+     public void TabelaClientes(List<Cliente> lista){
+       
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        modelo.addColumn("ID");
+        modelo.addColumn("Nome");
+        modelo.addColumn("CPF");
+       
+        
+        for(Cliente c : lista){
+            Vector linha = new Vector();
+            linha.add(c.getId());
+            linha.add(c.getNome());
+            linha.add(c.getCpf());
+            modelo.addRow(linha);
+        }
+       
+        tabResultado.setModel(modelo);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem mnBuscarCliente;
     private javax.swing.JMenuItem mnBuscarProduto;
     private javax.swing.JMenuItem mnCliente;
     private javax.swing.JMenuItem mnFornecedor;
     private javax.swing.JMenuItem mnProduto;
     private javax.swing.JMenuItem mnRegistrarCompra;
-    private javax.swing.JMenu mnRegistros;
     private javax.swing.JMenuItem mnSair;
     private javax.swing.JTable tabResultado;
-    private javax.swing.JTextField txtDescricao;
+    private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }
