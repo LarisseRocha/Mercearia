@@ -33,7 +33,7 @@ public class ProdutoRepositorio extends BancoDados {
                 sql.setFloat(4, obj.getPrCompra());
                 sql.setFloat(5, obj.getPrVenda());
                 sql.setInt(6, obj.getFornecedor().getId() );
-                System.out.println(obj.getFornecedor().getId());
+               // System.out.println(obj.getFornecedor().getId());
                 
                 
 
@@ -43,7 +43,7 @@ public class ProdutoRepositorio extends BancoDados {
                     return false;
             }else{
                     PreparedStatement sql = this.getConexao()
-                        .prepareStatement("update set Produtos descricao =?, uniCompr=?, uniVenda=?, prCompra=?, prVenda=?");
+                        .prepareStatement("update set Produtos descricao =?, uniCompr=?, uniVenda=?, prCompra=?, prVenda=?, fornecedorFK=?");
                 sql.setString(1, obj.getDescricao());
                 sql.setInt(2, (int) obj.getUniCompra());
                 sql.setInt(3, (int) obj.getUniVenda());
@@ -80,7 +80,7 @@ public class ProdutoRepositorio extends BancoDados {
             produto.setPrVenda(resultado.getInt("UniVenda"));
             produto.setPrCompra(resultado.getFloat("prCompra"));
             produto.setPrVenda(resultado.getFloat("prVenda"));
-            
+           
             
              
             return produto;
@@ -124,6 +124,7 @@ public class ProdutoRepositorio extends BancoDados {
                     p.setUniVenda(resultado.getInt("uniVenda"));
                     p.setPrCompra(resultado.getFloat("prCompra"));
                     p.setPrVenda(resultado.getFloat("prVenda"));
+                  
             
                   
                 }catch(Exception ex){
